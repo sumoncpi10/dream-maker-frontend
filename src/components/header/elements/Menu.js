@@ -25,12 +25,12 @@ function Menu({ containerType }) {
         <Container type={containerType}>
           <div className="menu-wrapper">
             <Link href="/">
-              <img src="/assets/images/logo.png" alt="Logo" />
+              <img src="/assets/images/logo (1).png" alt="Logo" />
             </Link>
             <SearchBar fillData={productsData} placeholder="What are you looking for?" />
             <div className="menu-functions">
               <Button>
-                <Link href="#">Join now</Link>
+                <Link href="#">Login</Link>
               </Button>
               <div className="menu-function-item" onClick={() => setWishlistSidebarOpen(true)}>
                 <img src="/assets/images/header/menu-wishlist.png" alt="" />

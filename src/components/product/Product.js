@@ -90,21 +90,18 @@ function Product({ data, productStyle }) {
     <>
       <div className={`product ${renderStyleClass()}`}>
         <div className="product-image">
-          <Link
-            href={`/product/[slug]`}
-            as={`/product/${data.slug}`}
-          >
-            <Link href={"/"} className={classNames({ loading: imageLoading })}>
-              {data.thumbImage &&
-                data.thumbImage.map((item, index) => (
-                  <img
-                    onLoad={handleImageLoaded}
-                    key={index}
-                    src={item}
-                    alt="Product image"
-                  />
-                ))}
-            </Link>
+
+          <Link href={`/product/[slug]`}
+            as={`/product/${data.slug}`} className={classNames({ loading: imageLoading })}>
+            {data.thumbImage &&
+              data.thumbImage.map((item, index) => (
+                <img
+                  onLoad={handleImageLoaded}
+                  key={index}
+                  src={item}
+                  alt="Product image"
+                />
+              ))}
           </Link>
           {imageLoading && (
             <div className="product-image-loading">
@@ -176,7 +173,7 @@ function Product({ data, productStyle }) {
             href={`/product/[slug]`}
             as={`/product/${data.slug}`}
           >
-            {/* <a className="product-name">{data.name}</a> */}
+            <Link href={"/"} className="product-name">{data.name}</Link>
           </Link>
           <div className="product-rate">
             <Rate defaultValue={data.rate} disabled />

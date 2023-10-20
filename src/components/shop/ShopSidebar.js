@@ -25,6 +25,7 @@ function ShopSidebar({ categories }) {
   const handleChange = (value) => {
     onChooseSubCategory(value);
   };
+  console.log(shopState)
   return (
     <div className="shop-sidebar">
       <h5>{globalState.category}</h5>

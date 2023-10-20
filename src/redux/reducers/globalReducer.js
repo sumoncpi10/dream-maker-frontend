@@ -6,7 +6,7 @@ const initialState = {
     locales: "us-US",
     currency: "USD",
   },
-  category: "clothing",
+  category: "Books",
   keyword: "",
 };
 
@@ -25,8 +25,8 @@ const globalReducer = (state = initialState, action) => {
             action.cur === "JPY"
               ? "jp-JP"
               : action.cur === "VND"
-              ? "vn-VN"
-              : "en-EN",
+                ? "vn-VN"
+                : "en-EN",
           currency: action.cur,
         },
       };

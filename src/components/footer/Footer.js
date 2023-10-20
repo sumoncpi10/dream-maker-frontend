@@ -15,18 +15,19 @@ function Footer({ containerType }) {
             <Col className="gutter-row" span="24" sm={12} lg={8}>
               <div className="footer-top-item -col-one">
                 <Link href="#">
-                  {/* <a>
-                    <img
-                      src={
-                        process.env.PUBLIC_URL + "/assets/images/logo-dark.png"
-                      }
-                      alt="Logo"
-                    />
-                  </a> */}
+
+                  {/* <img
+                    src={
+                      // process.env.PUBLIC_URL + 
+                      "/assets/images/logo-dark.png"
+                    }
+                    alt="Logo"
+                  /> */}
+                  <h1 >BoiBitan</h1>
                 </Link>
-                <p>7176 Blue Spring Lane Santa Monica, CA 90403</p>
+                <p>Dhaka, Bangladesh</p>
                 <ul>
-                  <li>hi.avitex@gmail.com</li>
+                  <li>admin@boibitan.com</li>
                   <li>+01 123 456 888</li>
                 </ul>
               </div>
@@ -40,7 +41,7 @@ function Footer({ containerType }) {
                       {links.information.map((item, index) => (
                         <li key={index}>
                           <Link href="#">
-                            {/* <a>{item.name}</a> */}
+                            {item.name}
                           </Link>
                         </li>
                       ))}
@@ -52,7 +53,7 @@ function Footer({ containerType }) {
                       {links.account.map((item, index) => (
                         <li key={index}>
                           <Link href="#">
-                            {/* <a>{item.name}</a> */}
+                            {item.name}
                           </Link>
                         </li>
                       ))}
@@ -71,7 +72,8 @@ function Footer({ containerType }) {
                 <FooterSubcribe url="https://jster.us7.list-manage.com/subscribe/post?u=ed40c0084a0c5ba31b3365d65&id=ec6f32bf5e" />
                 <img
                   src={
-                    process.env.PUBLIC_URL + "/assets/images/footer/payment.png"
+                    // process.env.PUBLIC_URL + 
+                    "/assets/images/footer/payment.png"
                   }
                   alt="Payment methods"
                 />

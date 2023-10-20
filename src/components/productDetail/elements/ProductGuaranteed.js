@@ -6,7 +6,7 @@ export default function ProductGuaranteed() {
       <Divider>Guaranteed Safe Checkout</Divider>
       <img
         src={
-          process.env.PUBLIC_URL +
+          // process.env.PUBLIC_URL +
           "/assets/images/shop/shop-detail/guaranteed.png"
         }
         alt="Guaranteed"

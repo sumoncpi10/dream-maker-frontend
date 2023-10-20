@@ -1,9 +1,10 @@
 //Products
 export const getProductsByCategory = (arr, category) => {
+  console.log(arr)
   return category
     ? arr.filter(
-        (item) => item.category.toLowerCase() === category.toLowerCase()
-      )
+      (item) => item?.categorys?.title.toLowerCase() === category.toLowerCase()
+    )
     : arr;
 };
 
@@ -66,9 +67,9 @@ export const getProductsBySort = (products, type) => {
 export const getProductsByFilter = (products, sortType, subCategory) => {
   let filteredProduct = subCategory
     ? products.filter(
-        (product) =>
-          product.subCategory.toLowerCase() === subCategory.toLowerCase()
-      )
+      (product) =>
+        product.subCategorys.title.toLowerCase() === subCategory.toLowerCase()
+    )
     : products;
   return getProductsBySort(filteredProduct, sortType);
 };
@@ -76,8 +77,8 @@ export const getProductsByFilter = (products, sortType, subCategory) => {
 export const getProductsBySearch = (products, keyword) => {
   return keyword && keyword !== ""
     ? products.filter((product) =>
-        product.name.toLowerCase().includes(keyword.toLowerCase())
-      )
+      product.name.toLowerCase().includes(keyword.toLowerCase())
+    )
     : products;
 };
 

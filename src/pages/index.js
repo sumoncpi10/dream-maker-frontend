@@ -4,10 +4,20 @@ import { useRouter } from "next/router";
 import Banners from "../components/shop/Banners";
 import LayoutOne from "../components/layouts/LayoutOne";
 import ShopLayout from "../components/shop/ShopLayout";
-import productData from "../data/product.json";
+// import productData from "../data/product.json";
 import useProductData from "../common/useProductData";
+export async function getStaticProps() {
+  const res = await fetch('http://localhost:5000/api/v1/books');
+  const data = await res.json();
 
-export default function Home() {
+  return {
+    props: {
+      productData: data.data,
+    },
+  };
+}
+export default function Home({ productData }) {
+  console.log(productData)
   const router = useRouter();
   const globalState = useSelector((state) => state.globalReducer);
   const data = useProductData(

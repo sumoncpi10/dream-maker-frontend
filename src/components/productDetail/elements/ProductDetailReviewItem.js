@@ -6,7 +6,7 @@ function ProductDetailReviewItem({ data }) {
     <div className="product-detail-review-item">
       <div className="product-detail-review-item__avatar">
         <img
-          src="https://thispersondoesnotexist.com/image"
+          src="https://cdn-icons-png.flaticon.com/512/6386/6386976.png"
           alt="Reviewer avatar"
         />
         <Rate disabled defaultValue={4} />

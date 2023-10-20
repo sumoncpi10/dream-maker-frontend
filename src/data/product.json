@@ -1,8 +1,8 @@
 [
   {
     "id": "1",
-    "category": "clothing",
-    "subCategory": "coat",
+    "category": "books",
+    "subCategory": "Fantacy",
     "name": "Jack & Jones Men's T-Shirt",
     "rate": 4,
     "reviewCount": 10,
@@ -23,14 +23,10 @@
       }
     ],
     "thumbImage": [
-      "/assets/images/products/clothes/1.png",
-      "/assets/images/products/clothes/2.png"
+      "/assets/images/products/clothes/1.png"
     ],
     "images": [
-      "/assets/images/products/clothes/1.png",
-      "/assets/images/products/clothes/2.png",
-      "/assets/images/products/clothes/3.png",
-      "/assets/images/products/clothes/4.png"
+      "/assets/images/products/clothes/1.png"
     ],
     "description": "",
     "slug": "jack-jones-mens-t-shirt-1"
@@ -57,13 +53,10 @@
     ],
     "thumbImage": [
       "/assets/images/products/clothes/2.png",
-      "/assets/images/products/clothes/3.png"
+      "/assets/images/products/clothes/2.png"
     ],
     "images": [
-      "/assets/images/products/clothes/2.png",
-      "/assets/images/products/clothes/3.png",
-      "/assets/images/products/clothes/4.png",
-      "/assets/images/products/clothes/5.png"
+      "/assets/images/products/clothes/2.png"
     ],
     "description": "",
     "slug": "fold-over-collar-plain-blazers-2"

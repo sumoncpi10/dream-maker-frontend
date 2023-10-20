@@ -1,7 +1,7 @@
 import React from "react";
 
-import Menu from "./elements/Menu";
 import TopNav from "./elements/TopNav";
+import Menu from "./elements/Menu";
 
 function Header({ containerType, headerStyle }) {
   const renderStyleClass = (type) => {

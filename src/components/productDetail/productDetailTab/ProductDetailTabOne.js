@@ -78,7 +78,7 @@ export default function ProductDetailTabOne() {
                   <td>
                     <img
                       src={
-                        process.env.PUBLIC_URL +
+                        // process.env.PUBLIC_URL +
                         "/assets/images/shop/shop-detail/care-icons.png"
                       }
                       alt="Care icon"

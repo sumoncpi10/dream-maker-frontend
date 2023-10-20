@@ -21,7 +21,7 @@ function TopNav({ containerType }) {
       <Container type={containerType}>
         <div className="top-nav-wrapper">
           <div className="top-nav-selects">
-            <Select
+            {/* <Select
               defaultValue={globalState.language}
               style={{ width: 90 }}
               bordered={false}
@@ -30,16 +30,16 @@ function TopNav({ containerType }) {
               <Option value="en">English</Option>
               <Option value="jp">Japanese</Option>
               <Option value="vi">Vietnamese</Option>
-            </Select>
+            </Select> */}
             <Select
               defaultValue={globalState.currency.currency}
               style={{ width: 120 }}
               bordered={false}
               onChange={onSelectCurrency}
             >
+              <Option value="JPY">BAN - Taka</Option>
               <Option value="USD">USD - Dollar</Option>
-              <Option value="JPY">JPY - Yen</Option>
-              <Option value="VND">VND - Vietnam dong</Option>
+              {/* <Option value="VND">VND - Vietnam dong</Option> */}
             </Select>
           </div>
           <div className="top-nav-links">
