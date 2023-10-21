@@ -1,10 +1,10 @@
-
 import { useRouter } from "next/router";
+
 import LayoutOne from "../../components/layouts/LayoutOne";
 import { capitalizeFirstLetter } from "../../common/utils";
 import { getProductsBySlug } from "../../common/shopUtils";
+import productData from "../../data/product.json";
 import ProductDetailOne from "../../components/productDetail/ProductDetailOne";
-
 export async function getServerSideProps(context) {
   try {
     const res = await fetch('https://book-catalog-backend-lilac.vercel.app/api/v1/books');
@@ -30,8 +30,8 @@ export async function getServerSideProps(context) {
   }
 }
 
-export default function ProductPage({ productData }) {
-  console.log(productData);
+export default function pid({ productData }) {
+  console.log(productData)
   const router = useRouter();
   const { slug } = router.query;
   const foundProduct = getProductsBySlug(productData, slug);
