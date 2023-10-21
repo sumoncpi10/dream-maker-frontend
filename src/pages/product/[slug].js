@@ -30,7 +30,7 @@ export async function getServerSideProps(context) {
   }
 }
 
-export default function pid({ productData }) {
+export default function Pid({ productData }) {
   console.log(productData)
   const router = useRouter();
   const { slug } = router.query;

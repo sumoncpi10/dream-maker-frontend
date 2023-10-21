@@ -14,16 +14,15 @@ function Footer({ containerType }) {
           <Row justify="center" gutter={30}>
             <Col className="gutter-row" span="24" sm={12} lg={8}>
               <div className="footer-top-item -col-one">
-                <Link href="#">
+                <Link href="\">
 
-                  {/* <img
+                  <img
                     src={
                       // process.env.PUBLIC_URL + 
-                      "/assets/images/logo-dark.png"
+                      "/assets/images/logo (1).png"
                     }
                     alt="Logo"
-                  /> */}
-                  <h1 >BoiBitan</h1>
+                  />
                 </Link>
                 <p>Dhaka, Bangladesh</p>
                 <ul>
