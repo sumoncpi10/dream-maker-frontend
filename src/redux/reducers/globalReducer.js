@@ -3,8 +3,8 @@ import { GLOBAL } from "../defines";
 const initialState = {
   language: "en",
   currency: {
-    locales: "us-US",
-    currency: "USD",
+    locales: "bn-BD",
+    currency: "BDT",
   },
   category: "Books",
   keyword: "",
