@@ -37,7 +37,7 @@ function TopNav({ containerType }) {
               bordered={false}
               onChange={onSelectCurrency}
             >
-              <Option value="JPY">BAN - Taka</Option>
+              <Option value="BDT">BAN - Taka</Option>
               <Option value="USD">USD - Dollar</Option>
               {/* <Option value="VND">VND - Vietnam dong</Option> */}
             </Select>

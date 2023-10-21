@@ -29,9 +29,7 @@ function Menu({ containerType }) {
             </Link>
             <SearchBar fillData={productsData} placeholder="What are you looking for?" />
             <div className="menu-functions">
-              <Button>
-                <Link href="#">Login</Link>
-              </Button>
+
               <div className="menu-function-item" onClick={() => setWishlistSidebarOpen(true)}>
                 <img src="/assets/images/header/menu-wishlist.png" alt="" />
                 <span>{wishlistState.length}</span>
@@ -40,6 +38,9 @@ function Menu({ containerType }) {
                 <img src="/assets/images/header/menu-bag.png" alt="" />
                 <span>{getTotalProductInCart(cartState)}</span>
               </div>
+              <Button>
+                <Link href="\login">Login</Link>
+              </Button>
             </div>
           </div>
         </Container>

@@ -2,11 +2,13 @@
   &.-style-two {
     .menu {
       background-color: setColor(blue);
+
       &-search {
         &__form {
           &-input {
             .ant-btn {
               background-color: setColor(red);
+
               &:hover {
                 background-color: lighten(setColor(red), 20%);
               }
@@ -14,6 +16,7 @@
           }
         }
       }
+
       &-functions {
         .menu-function-item {
           span {
@@ -22,6 +25,7 @@
         }
       }
     }
+
     .top-nav {
       background-color: setColor(blue);
     }
@@ -34,13 +38,16 @@
   left: 0;
   right: 0;
   z-index: 99;
+
   &.fixed {
     position: fixed;
     animation: example 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95) forwards;
+
     .header-one {
       .top-nav {
         display: none;
       }
+
       .menu-mobile-search {
         display: none;
       }
@@ -52,6 +59,7 @@
   from {
     transform: translateY(-100px);
   }
+
   to {
     transform: translateY(0);
   }

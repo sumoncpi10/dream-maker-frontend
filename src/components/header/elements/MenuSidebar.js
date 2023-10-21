@@ -25,7 +25,7 @@ function MenuSidebar() {
         <SubMenu key="sub1" title="Homepages">
           <Menu.Item key="1">
             <Link href={process.env.PUBLIC_URL + "/"}>
-              {/* <a>Homepage 1</a> */}
+              Homepage 1
             </Link>
           </Menu.Item>
           <Menu.Item key="2">

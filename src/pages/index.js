@@ -7,7 +7,7 @@ import ShopLayout from "../components/shop/ShopLayout";
 // import productData from "../data/product.json";
 import useProductData from "../common/useProductData";
 export async function getStaticProps() {
-  const res = await fetch('http://localhost:5000/api/v1/books');
+  const res = await fetch('https://book-catalog-backend-lilac.vercel.app/api/v1/books');
   const data = await res.json();
 
   return {
@@ -27,7 +27,7 @@ export default function Home({ productData }) {
   );
   console.log(data)
   return (
-    <LayoutOne title="Homepage 1">
+    <LayoutOne title="Homepage 1" headerStyle="two">
       <Banners />
       <ShopLayout
         fiveColumn

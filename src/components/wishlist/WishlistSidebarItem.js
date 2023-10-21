@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { Modal, message, Button } from "antd";
 import { useSelector, useDispatch } from "react-redux";
-
+import { CloseCircleFilled } from '@ant-design/icons';
 import { formatCurrency } from "../../common/utils";
 import {
   checkAvaiableQuantityToAdd,
@@ -53,7 +53,7 @@ function WishlistSidebarItem({ data }) {
             href={process.env.PUBLIC_URL + `/product/[slug]`}
             as={process.env.PUBLIC_URL + `/product/${data.slug}`}
           >
-            {/* <a>{data.name}</a> */}
+            {data.name}
           </Link>
           <h5>
             {data.discount
@@ -89,9 +89,9 @@ function WishlistSidebarItem({ data }) {
           )}
         </div>
         <div className="wishlist-sidebar-item__close">
-          {/* <a href="#" onClick={onRemoveProductFromWishlist}>
-            <i className="icon_close" />
-          </a> */}
+          <Link href="#" onClick={onRemoveProductFromWishlist}>
+            <CloseCircleFilled />
+          </Link>
         </div>
       </div>
       <Modal

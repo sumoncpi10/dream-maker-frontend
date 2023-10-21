@@ -31,7 +31,7 @@ function CartSidebar() {
         <div className="cart-sidebar-total__buttons">
           <Button type="primary" shape="round">
             <Link href={process.env.PUBLIC_URL + "/shop/checkout"}>
-              {/* <a>Checkout</a> */}
+              Checkout
             </Link>
           </Button>
         </div>

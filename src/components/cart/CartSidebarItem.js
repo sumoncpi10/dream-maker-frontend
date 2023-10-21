@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { Modal, message } from "antd";
 import { useSelector, useDispatch } from "react-redux";
-
+import { CloseCircleFilled } from '@ant-design/icons';
 import { formatCurrency } from "../../common/utils";
 import QuantitySelector from "../controls/QuantitySelector";
 import {
@@ -45,7 +45,7 @@ function CartSidebarItem({ data }) {
             href={process.env.PUBLIC_URL + `/product/[slug]`}
             as={process.env.PUBLIC_URL + `/product/${data.slug}`}
           >
-            {/* <a>{data.name}</a> */}
+            {data.name}
           </Link>
           <h5>
             {data.discount
@@ -70,9 +70,9 @@ function CartSidebarItem({ data }) {
           />
         </div>
         <div className="cart-sidebar-item__close">
-          {/* <a href="#" onClick={onRemoveProductFromCart}>
-            <i className="icon_close" />
-          </a> */}
+          <Link href="#" onClick={onRemoveProductFromCart}>
+            <CloseCircleFilled />
+          </Link>
         </div>
       </div>
       <Modal

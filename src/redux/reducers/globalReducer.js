@@ -22,11 +22,10 @@ const globalReducer = (state = initialState, action) => {
         ...state,
         currency: {
           locales:
-            action.cur === "JPY"
-              ? "jp-JP"
-              : action.cur === "VND"
-                ? "vn-VN"
-                : "en-EN",
+            action.cur === "BDT"
+              ? "bn-BD"
+
+              : "us-US",
           currency: action.cur,
         },
       };
