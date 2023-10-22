@@ -4,7 +4,7 @@ import Head from "next/head";
 import styles from "@/styles/Login.module.css";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
-const LoginPage = () => {
+const SignUPPage = () => {
     return (
         <div>
             <Head>
@@ -35,4 +35,4 @@ const LoginPage = () => {
     );
 };
 
-export default LoginPage;
+export default SignUPPage;
