@@ -68,7 +68,7 @@ function Footer({ containerType }) {
                   Subscribe to our newsletter and get 10% off your first
                   purchase
                 </p>
-                {/* <FooterSubcribe url="https://jster.us7.list-manage.com/subscribe/post?u=ed40c0084a0c5ba31b3365d65&id=ec6f32bf5e" /> */}
+                <FooterSubcribe url="https://jster.us7.list-manage.com/subscribe/post?u=ed40c0084a0c5ba31b3365d65&id=ec6f32bf5e" />
                 <img
                   src={
                     // process.env.PUBLIC_URL + 

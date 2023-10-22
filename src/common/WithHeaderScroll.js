@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 
-export default function WithHeaderScroll(WrappedComponent) {
-  return function (props) {
+export default function withHeaderScroll(WrappedComponent) {
+  const WithHeaderScroll = function (props) {
     const headerRef = useRef(null);
     const [scroll, setScroll] = useState(0);
     const [isHeaderFixed, setIsHeaderFixed] = useState(0);
+
     useEffect(() => {
       window.addEventListener("scroll", handleScroll);
       return () => {
@@ -33,4 +34,14 @@ export default function WithHeaderScroll(WrappedComponent) {
       </div>
     );
   };
+
+  // Set the display name for the HOC
+  WithHeaderScroll.displayName = `WithHeaderScroll(${getDisplayName(WrappedComponent)})`;
+
+  return WithHeaderScroll;
+}
+
+// Helper function to get the display name of the wrapped component
+function getDisplayName(WrappedComponent) {
+  return WrappedComponent.displayName || WrappedComponent.name || 'Component';
 }
