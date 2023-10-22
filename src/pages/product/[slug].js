@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import LayoutOne from "../../components/layouts/LayoutOne";
 import { capitalizeFirstLetter } from "../../common/utils";
 import { getProductsBySlug } from "../../common/shopUtils";
-import productData from "../../data/product.json";
+// import productData from "../../data/product.json";
 import ProductDetailOne from "../../components/productDetail/ProductDetailOne";
 export async function getServerSideProps(context) {
   try {
@@ -30,7 +30,7 @@ export async function getServerSideProps(context) {
   }
 }
 
-export default function pid({ productData }) {
+export default function Pid({ productData }) {
   console.log(productData)
   const router = useRouter();
   const { slug } = router.query;
