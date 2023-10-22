@@ -66,17 +66,17 @@ const CustomForm = React.memo(({ status, message, onValidated }) => {
   );
 });
 
-export default function FooterSubcribe({ url }) {
-  return (
-    <MailchimpSubscribe
-      url={url}
-      render={({ subscribe, status, message }) => (
-        <CustomForm
-          status={status}
-          message={message}
-          onValidated={(formData) => subscribe(formData)}
-        />
-      )}
-    />
-  );
-}
+// export default function FooterSubcribe({ url }) {
+//   return (
+//     <MailchimpSubscribe
+//       url={url}
+//       render={({ subscribe, status, message }) => (
+//         <CustomForm
+//           status={status}
+//           message={message}
+//           onValidated={(formData) => subscribe(formData)}
+//         />
+//       )}
+//     />
+//   );
+// }
