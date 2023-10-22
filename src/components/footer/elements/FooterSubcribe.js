@@ -1,6 +1,6 @@
 import React from "react";
 import MailchimpSubscribe from "react-mailchimp-subscribe";
-import { Form, Input, Button, Checkbox } from "antd";
+import { Form, Input, Button } from "antd";
 
 const CustomForm = React.memo(({ status, message, onValidated }) => {
   const onFinish = (value) => {
@@ -24,7 +24,7 @@ const CustomForm = React.memo(({ status, message, onValidated }) => {
         }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
-        className="footer-subcribe__form"
+        className="footer-subscribe__form"
       >
         <Form.Item
           noStyle={true}
@@ -32,7 +32,7 @@ const CustomForm = React.memo(({ status, message, onValidated }) => {
           rules={[
             {
               type: "email",
-              message: "The input is not valid E-mail!",
+              message: "The input is not a valid E-mail!",
             },
             {
               required: true,
@@ -48,7 +48,7 @@ const CustomForm = React.memo(({ status, message, onValidated }) => {
           </Button>
         </Form.Item>
       </Form>
-      {status === "sending" && <div style={{ color: "blue" }}>sending...</div>}
+      {status === "sending" && <div style={{ color: "blue" }}>Sending...</div>}
       {status === "error" && (
         <div
           style={{ color: "red" }}
@@ -66,13 +66,13 @@ const CustomForm = React.memo(({ status, message, onValidated }) => {
   );
 });
 
-export default function FooterSubcribe({ url }) {
+export default function FooterSubscribe({ url }) {
   return (
     <MailchimpSubscribe
       url={url}
       render={({ subscribe, status, message }) => (
         <CustomForm
-          status={status}
+          status={status} // Ensure status is a dependency
           message={message}
           onValidated={(formData) => subscribe(formData)}
         />
