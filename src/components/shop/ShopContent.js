@@ -4,6 +4,7 @@ import ShopContentProduct from "./ShopContentProduct";
 
 function ShopContent({
   fiveColumn,
+  typeSc,
   productResponsive,
   data,
   productPerPage,
@@ -11,7 +12,7 @@ function ShopContent({
 }) {
   return (
     <div className="shop-content">
-      <ShopContentHeader productPerPage={productPerPage} data={data} />
+      <ShopContentHeader typeSc={typeSc} productPerPage={productPerPage} data={data} />
       <ShopContentProduct
         productStyle={productStyle}
         fiveColumn={fiveColumn}

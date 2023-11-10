@@ -25,7 +25,7 @@ function Menu({ containerType }) {
         <Container type={containerType}>
           <div className="menu-wrapper">
             <Link href="/">
-              <img src="/assets/images/logo (1).png" alt="Logo" />
+              <img src="/assets/images/logo-dream.png" alt="Logo" />
             </Link>
             <SearchBar fillData={productsData} placeholder="What are you looking for?" />
             <div className="menu-functions">

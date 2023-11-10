@@ -6,7 +6,7 @@ const initialState = {
     locales: "bn-BD",
     currency: "BDT",
   },
-  category: "Books",
+  category: "All",
   keyword: "",
 };
 

@@ -5,18 +5,21 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { setSort } from "../../redux/actions/shopActions";
 
-function ShopContentHeader({ data, productPerPage }) {
+function ShopContentHeader({ typeSc, data, productPerPage }) {
   const { Option } = Select;
   const dispatch = useDispatch();
   const shopState = useSelector((state) => state.shopReducer);
+  const { category: globalCategory } = useSelector((state) => state.globalReducer);
   const handleChange = (value) => {
     dispatch(setSort(value));
   };
+  console.log(typeSc)
   return (
     <div className="shop-content__header">
       <div className="shop-content__header-showing">
+        <h1>{typeSc}</h1>
         <h5>
-          Showing 1 - {productPerPage} of {data.length} Products
+          {/* Showing 1 - {productPerPage} of {data.length} Products */}
         </h5>
       </div>
       <div className="shop-content__header-filter">
