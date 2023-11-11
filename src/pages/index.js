@@ -7,7 +7,7 @@ import productData from "../data/product.json";
 import useProductData from "../common/useProductData";
 import ShopLayoutHome from "@/components/shop/ShopLayoutHome";
 export async function getStaticProps() {
-  const res = await fetch('https://book-catalog-backend-lilac.vercel.app/api/v1/books');
+  const res = await fetch('https://dream-maker-super-shop-backend.vercel.app/api/v1/products/product-type');
   const data = await res.json();
 
   return {
@@ -17,7 +17,7 @@ export async function getStaticProps() {
   };
 }
 export default function Home({ productDataBooks }) {
-  console.log(productData)
+  console.log(productDataBooks)
   const router = useRouter();
   const globalState = useSelector((state) => state.globalReducer);
   const data = useProductData(
@@ -26,18 +26,18 @@ export default function Home({ productDataBooks }) {
     router.query.q
   );
   const { category: globalCategory } = useSelector((state) => state.globalReducer);
-  const dataBooks = useProductData(
-    productDataBooks,
-    globalState.category,
-    router.query.q
-  );
+  // const dataBooks = useProductData(
+  //   productDataBooks?.healthAndBeauty,
+  //   globalState.category,
+  //   router.query.q
+  // );
   console.log(data)
   return (
-    <LayoutOne title="Homepage 1" >
+    <LayoutOne title="Homepage 1">
       <Banners />
       {
         globalCategory == 'All' ? <>
-          <ShopLayoutHome
+          {/* <ShopLayoutHome
             eightColumn
             typeSc="Women's & Girl's Fashion"
             shopSidebarResponsive={{ xs: 24, lg: 4 }}
@@ -45,7 +45,7 @@ export default function Home({ productDataBooks }) {
             productResponsive={{ xs: 24, sm: 8, md: 4, lg: 3, xl: 3 }}
             productPerPage={16}
             data={[...productDataBooks]}
-          />
+          /> */}
           <ShopLayoutHome
             eightColumn
             typeSc='Health & Beauty'
@@ -53,7 +53,25 @@ export default function Home({ productDataBooks }) {
             shopContentResponsive={{ xs: 32, lg: 24 }}
             productResponsive={{ xs: 24, sm: 8, md: 4, lg: 3, xl: 3 }}
             productPerPage={16}
-            data={[...productDataBooks]}
+            data={[...productDataBooks?.healthAndBeauty]}
+          />
+          <ShopLayoutHome
+            eightColumn
+            typeSc='Electronics Accessories'
+            shopSidebarResponsive={{ xs: 24, lg: 4 }}
+            shopContentResponsive={{ xs: 32, lg: 24 }}
+            productResponsive={{ xs: 24, sm: 8, md: 4, lg: 3, xl: 3 }}
+            productPerPage={16}
+            data={[...productDataBooks?.electronicAccessories]}
+          />
+          <ShopLayoutHome
+            eightColumn
+            typeSc='Electronics Devices'
+            shopSidebarResponsive={{ xs: 24, lg: 4 }}
+            shopContentResponsive={{ xs: 32, lg: 24 }}
+            productResponsive={{ xs: 24, sm: 8, md: 4, lg: 3, xl: 3 }}
+            productPerPage={16}
+            data={[...productDataBooks?.electronicsDevices]}
           />
           <ShopLayoutHome
             eightColumn
@@ -62,8 +80,54 @@ export default function Home({ productDataBooks }) {
             shopContentResponsive={{ xs: 32, lg: 24 }}
             productResponsive={{ xs: 24, sm: 8, md: 4, lg: 3, xl: 3 }}
             productPerPage={16}
-            data={[...productDataBooks]}
-          /></> :
+            data={[...productDataBooks?.watchesBagsJewellery]}
+          />
+          <ShopLayoutHome
+            eightColumn
+            typeSc="Men & Boy's Fashion"
+            shopSidebarResponsive={{ xs: 24, lg: 4 }}
+            shopContentResponsive={{ xs: 32, lg: 24 }}
+            productResponsive={{ xs: 24, sm: 8, md: 4, lg: 3, xl: 3 }}
+            productPerPage={16}
+            data={[...productDataBooks?.menAndBoysFashion]}
+          />
+          <ShopLayoutHome
+            eightColumn
+            typeSc="Home & Lifestyle"
+            shopSidebarResponsive={{ xs: 24, lg: 4 }}
+            shopContentResponsive={{ xs: 32, lg: 24 }}
+            productResponsive={{ xs: 24, sm: 8, md: 4, lg: 3, xl: 3 }}
+            productPerPage={16}
+            data={[...productDataBooks?.homeAndLifestyle]}
+          />
+          <ShopLayoutHome
+            eightColumn
+            typeSc="Sports & Outdoors"
+            shopSidebarResponsive={{ xs: 24, lg: 4 }}
+            shopContentResponsive={{ xs: 32, lg: 24 }}
+            productResponsive={{ xs: 24, sm: 8, md: 4, lg: 3, xl: 3 }}
+            productPerPage={16}
+            data={[...productDataBooks?.sportsAndOutdoors]}
+          />
+          <ShopLayoutHome
+            eightColumn
+            typeSc="Groceries"
+            shopSidebarResponsive={{ xs: 24, lg: 4 }}
+            shopContentResponsive={{ xs: 32, lg: 24 }}
+            productResponsive={{ xs: 24, sm: 8, md: 4, lg: 3, xl: 3 }}
+            productPerPage={16}
+            data={[...productDataBooks?.groceries]}
+          />
+          <ShopLayoutHome
+            eightColumn
+            typeSc="Automotive & Motorbike"
+            shopSidebarResponsive={{ xs: 24, lg: 4 }}
+            shopContentResponsive={{ xs: 32, lg: 24 }}
+            productResponsive={{ xs: 24, sm: 8, md: 4, lg: 3, xl: 3 }}
+            productPerPage={16}
+            data={[...productDataBooks?.automotiveMotorbike]}
+          />
+        </> :
           <ShopLayout
             fiveColumn
             shopSidebarResponsive={{ xs: 24, lg: 4 }}
