@@ -1,93 +1,81 @@
-import React from "react";
-import Link from "next/link";
-import { useSelector, useDispatch } from "react-redux";
-import classNames from "classnames";
-import { Select } from "antd";
+import React from 'react';
+import { Menu, Card } from 'antd';
+import Link from 'next/link';
 
-import { SHOP } from "../../common/defines";
-import { setSubCategory } from "../../redux/actions/shopActions";
+const SideMenu = () => {
+  // Sample data for menu categories
+  const categories = [
+    {
+      title: 'Category 1',
+      subcategories: [
+        {
+          title: 'Subcategory 1.1',
+          items: ['Item 1.1.1', 'Item 1.1.2', 'Item 1.1.3'],
+        },
+        {
+          title: 'Subcategory 1.2',
+          items: ['Item 1.2.1', 'Item 1.2.2', 'Item 1.2.3'],
+        },
+        {
+          title: 'Subcategory 1.3',
+          items: ['Item 1.3.1', 'Item 1.3.2', 'Item 1.3.3'],
+        },
+      ],
+    },
+    {
+      title: 'Category 2',
+      subcategories: [
+        {
+          title: 'Subcategory 2.1',
+          items: ['Item 2.1.1', 'Item 2.1.2', 'Item 2.1.3'],
+        },
+        {
+          title: 'Subcategory 2.2',
+          items: ['Item 2.2.1', 'Item 2.2.2', 'Item 2.2.3'],
+        },
+        {
+          title: 'Subcategory 2.3',
+          items: ['Item 2.3.1', 'Item 2.3.2', 'Item 2.3.3'],
+        },
+      ],
+    },
+    // Add more categories as needed
+  ];
 
-function TypeSidebar({ categories }) {
-  const { Option } = Select;
-  const dispatch = useDispatch();
-  const globalState = useSelector((state) => state.globalReducer);
-  const shopState = useSelector((state) => state.shopReducer);
-
-  const subCategory = SHOP.category.find(
-    (item) => item.name.toLowerCase() === globalState.category.toLowerCase()
-  );
-  const onChooseSubCategory = (data) => {
-    if (!data || data === "all") {
-      return dispatch(setSubCategory(""));
-    }
-    return dispatch(setSubCategory(data));
-  };
-  const handleChange = (value) => {
-    onChooseSubCategory(value);
-  };
-  console.log(shopState)
   return (
-    <div className="shop-sidebar">
-      {/* <h5>{globalState.category}</h5> */}
-      <div className="shop-sidebar__subcategory">
-        <ul>
-          <li
-            className={classNames({
-              active: shopState.subCategory === "",
-            })}
-          >
-            <Link href="" onClick={(e) => {
-              e.preventDefault();
-              onChooseSubCategory("all");
-            }}>
-
-              <i className="icon_document_alt" />
-              All Category
-            </Link>
-          </li>
-          {subCategory &&
-            subCategory.sub.slice(0, 7).map((item, index) => (
-              <li
-                key={index}
-                className={classNames({
-                  active: shopState.subCategory === item.name,
-                })}
-              >
-                <Link href="#" onClick={(e) => {
-                  e.preventDefault();
-                  onChooseSubCategory(item.name);
-                }}>
-
-                  <i className={item.iconClass} />
-                  {item.name}
-                </Link>
-              </li>
+    <Card>
+      <Menu mode="vertical" style={{ width: '100%' }}>
+        {categories.map((category, index) => (
+          <Menu.SubMenu key={index} title={category.title}>
+            {category.subcategories.map((subCategory, subIndex) => (
+              <Menu.SubMenu key={`${index}-${subIndex}`} title={subCategory.title}>
+                {subCategory.items.map((item, itemIndex) => (
+                  <Menu.Item key={`${index}-${subIndex}-${itemIndex}`}>
+                    <Link href={`/products/${encodeURIComponent(item.toLowerCase())}`}>
+                      {item}
+                    </Link>
+                  </Menu.Item>
+                ))}
+              </Menu.SubMenu>
             ))}
-        </ul>
-      </div>
-      <div className="shop-sidebar__subcategory-mobile">
-        <Select
-          defaultValue="all"
-          style={{ width: "100%" }}
-          onChange={handleChange}
-          value={shopState.subCategory === "" ? "all" : shopState.subCategory}
-        >
-          <Option value="all">
-            <i className="icon_document_alt" />
-            All Category
-          </Option>
-          {subCategory &&
-            subCategory.sub.map((item, index) => (
-              <Option key={index} value={item.name}>
-                {" "}
-                <i className={item.iconClass} />
-                {item.name}
-              </Option>
-            ))}
-        </Select>
-      </div>
-    </div>
+          </Menu.SubMenu>
+        ))}
+        {/* Add more menu items as needed */}
+        <Menu.Item key="special-offers">
+          <Link href="/special-offers">Special Offers</Link>
+        </Menu.Item>
+        <Menu.Item key="new-arrivals">
+          <Link href="/new-arrivals">New Arrivals</Link>
+        </Menu.Item>
+        <Menu.Item key="new-arrivals">
+          <Link href="/new-arrivals">New Arrivals</Link>
+        </Menu.Item>
+        <Menu.Item key="new-arrivals">
+          <Link href="/new-arrivals">New Arrivals</Link>
+        </Menu.Item>
+      </Menu>
+    </Card>
   );
-}
+};
 
-export default React.memo(TypeSidebar);
+export default SideMenu;
