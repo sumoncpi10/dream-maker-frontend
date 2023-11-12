@@ -7,9 +7,9 @@ import ShopSidebar from "./ShopSidebar";
 import TypeSidebar from "./TypeSidebar";
 
 const contentStyle = {
-  height: '315px',
+  height: '405px',
   color: '#fff',
-  lineHeight: '315px',
+  lineHeight: '405px',
   textAlign: 'center',
   background: '#364d79',
 };

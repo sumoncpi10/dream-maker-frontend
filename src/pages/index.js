@@ -44,7 +44,7 @@ export default function Home({ productDataBooks }) {
             shopSidebarResponsive={{ xs: 24, lg: 4 }}
             shopContentResponsive={{ xs: 32, lg: 24 }}
             productResponsive={{ xs: 24, sm: 8, md: 4, lg: 3, xl: 3 }}
-            productPerPage={16}
+            productPerPage={8}
             data={[...productDataBooks]}
           /> */}
           <ShopLayoutHome
@@ -53,7 +53,7 @@ export default function Home({ productDataBooks }) {
             shopSidebarResponsive={{ xs: 24, lg: 4 }}
             shopContentResponsive={{ xs: 32, lg: 24 }}
             productResponsive={{ xs: 24, sm: 8, md: 4, lg: 3, xl: 3 }}
-            productPerPage={16}
+            productPerPage={8}
             data={[...productDataBooks?.healthAndBeauty]}
           />
           <ShopLayoutHome
@@ -62,7 +62,7 @@ export default function Home({ productDataBooks }) {
             shopSidebarResponsive={{ xs: 24, lg: 4 }}
             shopContentResponsive={{ xs: 32, lg: 24 }}
             productResponsive={{ xs: 24, sm: 8, md: 4, lg: 3, xl: 3 }}
-            productPerPage={16}
+            productPerPage={8}
             data={[...productDataBooks?.electronicAccessories]}
           />
           <ShopLayoutHome
@@ -71,7 +71,7 @@ export default function Home({ productDataBooks }) {
             shopSidebarResponsive={{ xs: 24, lg: 4 }}
             shopContentResponsive={{ xs: 32, lg: 24 }}
             productResponsive={{ xs: 24, sm: 8, md: 4, lg: 3, xl: 3 }}
-            productPerPage={16}
+            productPerPage={8}
             data={[...productDataBooks?.electronicsDevices]}
           />
           <ShopLayoutHome
@@ -80,7 +80,7 @@ export default function Home({ productDataBooks }) {
             shopSidebarResponsive={{ xs: 24, lg: 4 }}
             shopContentResponsive={{ xs: 32, lg: 24 }}
             productResponsive={{ xs: 24, sm: 8, md: 4, lg: 3, xl: 3 }}
-            productPerPage={16}
+            productPerPage={8}
             data={[...productDataBooks?.watchesBagsJewellery]}
           />
           <ShopLayoutHome
@@ -89,7 +89,7 @@ export default function Home({ productDataBooks }) {
             shopSidebarResponsive={{ xs: 24, lg: 4 }}
             shopContentResponsive={{ xs: 32, lg: 24 }}
             productResponsive={{ xs: 24, sm: 8, md: 4, lg: 3, xl: 3 }}
-            productPerPage={16}
+            productPerPage={8}
             data={[...productDataBooks?.menAndBoysFashion]}
           />
           <ShopLayoutHome
@@ -98,7 +98,7 @@ export default function Home({ productDataBooks }) {
             shopSidebarResponsive={{ xs: 24, lg: 4 }}
             shopContentResponsive={{ xs: 32, lg: 24 }}
             productResponsive={{ xs: 24, sm: 8, md: 4, lg: 3, xl: 3 }}
-            productPerPage={16}
+            productPerPage={8}
             data={[...productDataBooks?.homeAndLifestyle]}
           />
           <ShopLayoutHome
@@ -107,7 +107,7 @@ export default function Home({ productDataBooks }) {
             shopSidebarResponsive={{ xs: 24, lg: 4 }}
             shopContentResponsive={{ xs: 32, lg: 24 }}
             productResponsive={{ xs: 24, sm: 8, md: 4, lg: 3, xl: 3 }}
-            productPerPage={16}
+            productPerPage={8}
             data={[...productDataBooks?.sportsAndOutdoors]}
           />
           <ShopLayoutHome
@@ -116,7 +116,7 @@ export default function Home({ productDataBooks }) {
             shopSidebarResponsive={{ xs: 24, lg: 4 }}
             shopContentResponsive={{ xs: 32, lg: 24 }}
             productResponsive={{ xs: 24, sm: 8, md: 4, lg: 3, xl: 3 }}
-            productPerPage={16}
+            productPerPage={8}
             data={[...productDataBooks?.groceries]}
           />
           <ShopLayoutHome
@@ -125,7 +125,7 @@ export default function Home({ productDataBooks }) {
             shopSidebarResponsive={{ xs: 24, lg: 4 }}
             shopContentResponsive={{ xs: 32, lg: 24 }}
             productResponsive={{ xs: 24, sm: 8, md: 4, lg: 3, xl: 3 }}
-            productPerPage={16}
+            productPerPage={8}
             data={[...productDataBooks?.automotiveMotorbike]}
           />
         </> :

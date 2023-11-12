@@ -73,6 +73,12 @@ const SideMenu = () => {
         <Menu.Item key="new-arrivals">
           <Link href="/new-arrivals">New Arrivals</Link>
         </Menu.Item>
+        <Menu.Item key="new-arrivals">
+          <Link href="/new-arrivals">New Arrivals</Link>
+        </Menu.Item>
+        <Menu.Item key="new-arrivals">
+          <Link href="/new-arrivals">New Arrivals</Link>
+        </Menu.Item>
       </Menu>
     </Card>
   );

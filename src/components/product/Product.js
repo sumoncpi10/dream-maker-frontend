@@ -94,7 +94,7 @@ function Product({ data, productStyle }) {
           <Link href={`/product/[slug]`}
             as={`/product/${data.slug}`} className={classNames({ loading: imageLoading })}>
             {data.thumbImage &&
-              data.thumbImage.map((item, index) => (
+              data.thumbImage?.map((item, index) => (
                 <img
                   onLoad={handleImageLoaded}
                   key={index}
@@ -173,10 +173,10 @@ function Product({ data, productStyle }) {
             href={`/product/[slug]`}
             as={`/product/${data.slug}`}
           >
-            <Link href={"/"} className="product-name">{data.name}</Link>
+            <Link href={"/"} className="product-name">{data?.name}</Link>
           </Link>
           <div className="product-rate">
-            <Rate defaultValue={data.rate} disabled />
+            <Rate defaultValue={data?.rate} disabled />
             <span className="product-rate-quantity">(06)</span>
           </div>
           <div className="product-content__footer">
