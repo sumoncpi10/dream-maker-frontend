@@ -34,7 +34,7 @@ export default function Home({ productDataBooks }) {
   // );
   console.log(data)
   return (
-    <LayoutOne title="Homepage 1">
+    <LayoutOne title="Homepage 1" style={{ padding: '20px' }}>
       <Banners />
       {
         globalCategory == 'All' ? <>
