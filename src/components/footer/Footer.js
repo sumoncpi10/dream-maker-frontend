@@ -5,7 +5,9 @@ import Link from "next/link";
 import FooterSubcribe from "./elements/FooterSubcribe";
 import Container from "../other/Container";
 import links from "../../data/footer-links.json";
-
+import {
+  ShoppingFilled
+} from '@ant-design/icons';
 function Footer({ containerType }) {
   return (
     <div className="footer">
@@ -14,7 +16,8 @@ function Footer({ containerType }) {
           <Row justify="center" gutter={30}>
             <Col className="gutter-row" span="24" sm={12} lg={8}>
               <div className="footer-top-item -col-one">
-                <Link href="\">
+                <h1 style={{ "color": "black", "fontSize": "35px" }}><ShoppingFilled /> DM Shop</h1>
+                {/* <Link href="\">
 
                   <img
                     src={
@@ -23,7 +26,7 @@ function Footer({ containerType }) {
                     }
                     alt="Logo"
                   />
-                </Link>
+                </Link> */}
                 <p>Dhaka, Bangladesh</p>
                 <ul>
                   <li>admin@boibitan.com</li>

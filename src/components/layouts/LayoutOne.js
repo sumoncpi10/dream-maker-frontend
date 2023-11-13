@@ -16,6 +16,7 @@ function LayoutOne({
   containerType,
   children,
   clearSpaceTop,
+  itemType
 }) {
   message.config({
     maxCount: 3,

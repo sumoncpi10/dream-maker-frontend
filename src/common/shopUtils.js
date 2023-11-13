@@ -2,7 +2,7 @@
 export const getProductsByCategory = (arr, category) => {
   return category
     ? arr.filter(
-      (item) => item.category.toLowerCase() === category.toLowerCase()
+      (item) => item?.productType?.title?.toLowerCase() === category.toLowerCase()
     )
     : arr;
 };

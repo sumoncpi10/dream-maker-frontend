@@ -9,7 +9,7 @@ export default function useProductData(productData, category, query) {
       ? getProductsBySearch(getProductsByCategory(productData, category), query)
       : getProductsByCategory(productData, category);
     setData(product);
-    setData(product);
+    // setData(product);
   }, [category, query]);
 
   return data;

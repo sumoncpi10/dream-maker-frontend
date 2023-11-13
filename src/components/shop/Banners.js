@@ -7,21 +7,21 @@ import ShopSidebar from "./ShopSidebar";
 import TypeSidebar from "./TypeSidebar";
 
 const contentStyle = {
-  height: '505px',
+  height: '390px',
   color: '#fff',
-  lineHeight: '505px',
+  lineHeight: '390px',
   textAlign: 'center',
   background: '#364d79',
 };
 
-export default function Banners({ containerType }) {
+export default function Banners({ containerType, itemType }) {
   return (
     <div className="shop-layout">
       <Container type={containerType}>
         <Row gutter={30}>
           {/* Shop Sidebar */}
           <Col className="gutter-row" xs={24} sm={6} lg={6} >
-            <TypeSidebar />
+            <TypeSidebar itemType={itemType} />
           </Col>
 
           {/* Shop Content with Carousel */}

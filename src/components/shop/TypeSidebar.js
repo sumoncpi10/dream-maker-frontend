@@ -2,224 +2,225 @@ import React from 'react';
 import { Menu, Card } from 'antd';
 import Link from 'next/link';
 
-const SideMenu = () => {
+const TypeSidebar = ({ itemType }) => {
+  console.log(itemType)
   // Sample data for menu categories
-  const categories = [
-    // {
-    //   title: "Women's & Girls' Fashion",
-    //   subcategories: [
-    //     {
-    //       title: 'Subcategory 1.1',
-    //       items: ['Item 1.1.1', 'Item 1.1.2', 'Item 1.1.3'],
-    //     },
-    //     {
-    //       title: 'Subcategory 1.2',
-    //       items: ['Item 1.2.1', 'Item 1.2.2', 'Item 1.2.3'],
-    //     },
-    //     {
-    //       title: 'Subcategory 1.3',
-    //       items: ['Item 1.3.1', 'Item 1.3.2', 'Item 1.3.3'],
-    //     },
-    //   ],
-    // },
-    {
-      title: 'Health & Beauty',
-      subcategories: [
-        {
-          title: 'Subcategory 2.1',
-          items: ['Item 2.1.1', 'Item 2.1.2', 'Item 2.1.3'],
-        },
-        {
-          title: 'Subcategory 2.2',
-          items: ['Item 2.2.1', 'Item 2.2.2', 'Item 2.2.3'],
-        },
-        {
-          title: 'Subcategory 2.3',
-          items: ['Item 2.3.1', 'Item 2.3.2', 'Item 2.3.3'],
-        },
-      ],
-    },
-    {
-      title: "Watches, Bags, Jewellery",
-      subcategories: [
-        {
-          title: 'Subcategory 2.1',
-          items: ['Item 2.1.1', 'Item 2.1.2', 'Item 2.1.3'],
-        },
-        {
-          title: 'Subcategory 2.2',
-          items: ['Item 2.2.1', 'Item 2.2.2', 'Item 2.2.3'],
-        },
-        {
-          title: 'Subcategory 2.3',
-          items: ['Item 2.3.1', 'Item 2.3.2', 'Item 2.3.3'],
-        },
-      ],
-    },
-    {
-      title: "Men's & Boys' Fashion",
-      subcategories: [
-        {
-          title: 'Subcategory 2.1',
-          items: ['Item 2.1.1', 'Item 2.1.2', 'Item 2.1.3'],
-        },
-        {
-          title: 'Subcategory 2.2',
-          items: ['Item 2.2.1', 'Item 2.2.2', 'Item 2.2.3'],
-        },
-        {
-          title: 'Subcategory 2.3',
-          items: ['Item 2.3.1', 'Item 2.3.2', 'Item 2.3.3'],
-        },
-      ],
-    },
-    {
-      title: "Mother & Baby",
-      subcategories: [
-        {
-          title: 'Subcategory 2.1',
-          items: ['Item 2.1.1', 'Item 2.1.2', 'Item 2.1.3'],
-        },
-        {
-          title: 'Subcategory 2.2',
-          items: ['Item 2.2.1', 'Item 2.2.2', 'Item 2.2.3'],
-        },
-        {
-          title: 'Subcategory 2.3',
-          items: ['Item 2.3.1', 'Item 2.3.2', 'Item 2.3.3'],
-        },
-      ],
-    },
-    {
-      title: "Electronics Devices",
-      subcategories: [
-        {
-          title: 'Subcategory 2.1',
-          items: ['Item 2.1.1', 'Item 2.1.2', 'Item 2.1.3'],
-        },
-        {
-          title: 'Subcategory 2.2',
-          items: ['Item 2.2.1', 'Item 2.2.2', 'Item 2.2.3'],
-        },
-        {
-          title: 'Subcategory 2.3',
-          items: ['Item 2.3.1', 'Item 2.3.2', 'Item 2.3.3'],
-        },
-      ],
-    },
-    {
-      title: "TV & Home Appliances",
-      subcategories: [
-        {
-          title: 'Subcategory 2.1',
-          items: ['Item 2.1.1', 'Item 2.1.2', 'Item 2.1.3'],
-        },
-        {
-          title: 'Subcategory 2.2',
-          items: ['Item 2.2.1', 'Item 2.2.2', 'Item 2.2.3'],
-        },
-        {
-          title: 'Subcategory 2.3',
-          items: ['Item 2.3.1', 'Item 2.3.2', 'Item 2.3.3'],
-        },
-      ],
-    },
-    {
-      title: "Electronic Accessories",
-      subcategories: [
-        {
-          title: 'Subcategory 2.1',
-          items: ['Item 2.1.1', 'Item 2.1.2', 'Item 2.1.3'],
-        },
-        {
-          title: 'Subcategory 2.2',
-          items: ['Item 2.2.1', 'Item 2.2.2', 'Item 2.2.3'],
-        },
-        {
-          title: 'Subcategory 2.3',
-          items: ['Item 2.3.1', 'Item 2.3.2', 'Item 2.3.3'],
-        },
-      ],
-    },
-    {
-      title: "Groceries",
-      subcategories: [
-        {
-          title: 'Subcategory 2.1',
-          items: ['Item 2.1.1', 'Item 2.1.2', 'Item 2.1.3'],
-        },
-        {
-          title: 'Subcategory 2.2',
-          items: ['Item 2.2.1', 'Item 2.2.2', 'Item 2.2.3'],
-        },
-        {
-          title: 'Subcategory 2.3',
-          items: ['Item 2.3.1', 'Item 2.3.2', 'Item 2.3.3'],
-        },
-      ],
-    },
-    {
-      title: "Home & Lifestyle",
-      subcategories: [
-        {
-          title: 'Subcategory 2.1',
-          items: ['Item 2.1.1', 'Item 2.1.2', 'Item 2.1.3'],
-        },
-        {
-          title: 'Subcategory 2.2',
-          items: ['Item 2.2.1', 'Item 2.2.2', 'Item 2.2.3'],
-        },
-        {
-          title: 'Subcategory 2.3',
-          items: ['Item 2.3.1', 'Item 2.3.2', 'Item 2.3.3'],
-        },
-      ],
-    },
-    {
-      title: "Sports & Outdoors",
-      subcategories: [
-        {
-          title: 'Subcategory 2.1',
-          items: ['Item 2.1.1', 'Item 2.1.2', 'Item 2.1.3'],
-        },
-        {
-          title: 'Subcategory 2.2',
-          items: ['Item 2.2.1', 'Item 2.2.2', 'Item 2.2.3'],
-        },
-        {
-          title: 'Subcategory 2.3',
-          items: ['Item 2.3.1', 'Item 2.3.2', 'Item 2.3.3'],
-        },
-      ],
-    },
-    {
-      title: "Automotive & Motorbike",
-      subcategories: [
-        {
-          title: 'Subcategory 2.1',
-          items: ['Item 2.1.1', 'Item 2.1.2', 'Item 2.1.3'],
-        },
-        {
-          title: 'Subcategory 2.2',
-          items: ['Item 2.2.1', 'Item 2.2.2', 'Item 2.2.3'],
-        },
-        {
-          title: 'Subcategory 2.3',
-          items: ['Item 2.3.1', 'Item 2.3.2', 'Item 2.3.3'],
-        },
-      ],
-    },
-    // Add more categories as needed
-  ];
+  // const itemType = [
+  //   {
+  //     title: "Women's & Girls' Fashion",
+  //     categories: [
+  //       {
+  //         title: 'Subcategory 1.1',
+  //         subcategories: ['Item 1.1.1', 'Item 1.1.2', 'Item 1.1.3'],
+  //       },
+  //       {
+  //         title: 'Subcategory 1.2',
+  //         subcategories: ['Item 1.2.1', 'Item 1.2.2', 'Item 1.2.3'],
+  //       },
+  //       {
+  //         title: 'Subcategory 1.3',
+  //         subcategories: ['Item 1.3.1', 'Item 1.3.2', 'Item 1.3.3'],
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     title: 'Health & Beauty',
+  //     categories: [
+  //       {
+  //         title: 'Subcategory 2.1',
+  //         subcategories: ['Item 2.1.1', 'Item 2.1.2', 'Item 2.1.3'],
+  //       },
+  //       {
+  //         title: 'Subcategory 2.2',
+  //         subcategories: ['Item 2.2.1', 'Item 2.2.2', 'Item 2.2.3'],
+  //       },
+  //       {
+  //         title: 'Subcategory 2.3',
+  //         subcategories: ['Item 2.3.1', 'Item 2.3.2', 'Item 2.3.3'],
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     title: "Watches, Bags, Jewellery",
+  //     categories: [
+  //       {
+  //         title: 'Subcategory 2.1',
+  //         subcategories: ['Item 2.1.1', 'Item 2.1.2', 'Item 2.1.3'],
+  //       },
+  //       {
+  //         title: 'Subcategory 2.2',
+  //         subcategories: ['Item 2.2.1', 'Item 2.2.2', 'Item 2.2.3'],
+  //       },
+  //       {
+  //         title: 'Subcategory 2.3',
+  //         subcategories: ['Item 2.3.1', 'Item 2.3.2', 'Item 2.3.3'],
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     title: "Men's & Boys' Fashion",
+  //     categories: [
+  //       {
+  //         title: 'Subcategory 2.1',
+  //         subcategories: ['Item 2.1.1', 'Item 2.1.2', 'Item 2.1.3'],
+  //       },
+  //       {
+  //         title: 'Subcategory 2.2',
+  //         subcategories: ['Item 2.2.1', 'Item 2.2.2', 'Item 2.2.3'],
+  //       },
+  //       {
+  //         title: 'Subcategory 2.3',
+  //         subcategories: ['Item 2.3.1', 'Item 2.3.2', 'Item 2.3.3'],
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     title: "Mother & Baby",
+  //     categories: [
+  //       {
+  //         title: 'Subcategory 2.1',
+  //         subcategories: ['Item 2.1.1', 'Item 2.1.2', 'Item 2.1.3'],
+  //       },
+  //       {
+  //         title: 'Subcategory 2.2',
+  //         subcategories: ['Item 2.2.1', 'Item 2.2.2', 'Item 2.2.3'],
+  //       },
+  //       {
+  //         title: 'Subcategory 2.3',
+  //         subcategories: ['Item 2.3.1', 'Item 2.3.2', 'Item 2.3.3'],
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     title: "Electronics Devices",
+  //     categories: [
+  //       {
+  //         title: 'Subcategory 2.1',
+  //         subcategories: ['Item 2.1.1', 'Item 2.1.2', 'Item 2.1.3'],
+  //       },
+  //       {
+  //         title: 'Subcategory 2.2',
+  //         subcategories: ['Item 2.2.1', 'Item 2.2.2', 'Item 2.2.3'],
+  //       },
+  //       {
+  //         title: 'Subcategory 2.3',
+  //         subcategories: ['Item 2.3.1', 'Item 2.3.2', 'Item 2.3.3'],
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     title: "TV & Home Appliances",
+  //     categories: [
+  //       {
+  //         title: 'Subcategory 2.1',
+  //         subcategories: ['Item 2.1.1', 'Item 2.1.2', 'Item 2.1.3'],
+  //       },
+  //       {
+  //         title: 'Subcategory 2.2',
+  //         subcategories: ['Item 2.2.1', 'Item 2.2.2', 'Item 2.2.3'],
+  //       },
+  //       {
+  //         title: 'Subcategory 2.3',
+  //         subcategories: ['Item 2.3.1', 'Item 2.3.2', 'Item 2.3.3'],
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     title: "Electronic Accessories",
+  //     categories: [
+  //       {
+  //         title: 'Subcategory 2.1',
+  //         subcategories: ['Item 2.1.1', 'Item 2.1.2', 'Item 2.1.3'],
+  //       },
+  //       {
+  //         title: 'Subcategory 2.2',
+  //         subcategories: ['Item 2.2.1', 'Item 2.2.2', 'Item 2.2.3'],
+  //       },
+  //       {
+  //         title: 'Subcategory 2.3',
+  //         subcategories: ['Item 2.3.1', 'Item 2.3.2', 'Item 2.3.3'],
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     title: "Groceries",
+  //     categories: [
+  //       {
+  //         title: 'Subcategory 2.1',
+  //         subcategories: ['Item 2.1.1', 'Item 2.1.2', 'Item 2.1.3'],
+  //       },
+  //       {
+  //         title: 'Subcategory 2.2',
+  //         subcategories: ['Item 2.2.1', 'Item 2.2.2', 'Item 2.2.3'],
+  //       },
+  //       {
+  //         title: 'Subcategory 2.3',
+  //         subcategories: ['Item 2.3.1', 'Item 2.3.2', 'Item 2.3.3'],
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     title: "Home & Lifestyle",
+  //     categories: [
+  //       {
+  //         title: 'Subcategory 2.1',
+  //         subcategories: ['Item 2.1.1', 'Item 2.1.2', 'Item 2.1.3'],
+  //       },
+  //       {
+  //         title: 'Subcategory 2.2',
+  //         subcategories: ['Item 2.2.1', 'Item 2.2.2', 'Item 2.2.3'],
+  //       },
+  //       {
+  //         title: 'Subcategory 2.3',
+  //         subcategories: ['Item 2.3.1', 'Item 2.3.2', 'Item 2.3.3'],
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     title: "Sports & Outdoors",
+  //     categories: [
+  //       {
+  //         title: 'Subcategory 2.1',
+  //         subcategories: ['Item 2.1.1', 'Item 2.1.2', 'Item 2.1.3'],
+  //       },
+  //       {
+  //         title: 'Subcategory 2.2',
+  //         subcategories: ['Item 2.2.1', 'Item 2.2.2', 'Item 2.2.3'],
+  //       },
+  //       {
+  //         title: 'Subcategory 2.3',
+  //         subcategories: ['Item 2.3.1', 'Item 2.3.2', 'Item 2.3.3'],
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     title: "Automotive & Motorbike",
+  //     categories: [
+  //       {
+  //         title: 'Subcategory 2.1',
+  //         subcategories: ['Item 2.1.1', 'Item 2.1.2', 'Item 2.1.3'],
+  //       },
+  //       {
+  //         title: 'Subcategory 2.2',
+  //         subcategories: ['Item 2.2.1', 'Item 2.2.2', 'Item 2.2.3'],
+  //       },
+  //       {
+  //         title: 'Subcategory 2.3',
+  //         subcategories: ['Item 2.3.1', 'Item 2.3.2', 'Item 2.3.3'],
+  //       },
+  //     ],
+  //   },
+  //   // Add more categories as needed
+  // ];
 
   return (
-    <Card>
+    <Card style={{ padding: '10px !important' }}>
       <Menu mode="vertical" style={{ width: '100%', padding: 0, margin: 0 }}>
-        {categories.map((category, index) => (
-          <Menu.SubMenu key={index} title={category.title} style={{ margin: 0, padding: 0 }}>
-            {category.subcategories.map((subCategory, subIndex) => (
+        {itemType?.itemType?.map((category, index) => (
+          <Menu.SubMenu key={index} title={category.title} style={{ height: 25, margin: 0, padding: 0, lineHeight: '20px' }}>
+            {category.categories.map((subCategory, subIndex) => (
               <Menu.SubMenu key={`${index}-${subIndex}`} title={subCategory.title} style={{ margin: 0, padding: 0 }}>
-                {subCategory.items.map((item, itemIndex) => (
+                {subCategory.subcategories.map((item, itemIndex) => (
                   <Menu.Item key={`${index}-${subIndex}-${itemIndex}`} style={{ margin: 0, padding: 0 }}>
                     <Link href={`/products/${encodeURIComponent(item.toLowerCase())}`}>
                       {item}
@@ -233,7 +234,8 @@ const SideMenu = () => {
       </Menu>
     </Card>
 
+
   );
 };
 
-export default SideMenu;
+export default TypeSidebar;

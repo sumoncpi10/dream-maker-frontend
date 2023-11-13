@@ -1,6 +1,5 @@
 export const SHOP = {
   category: [
-
     {
       name: "All",
       sub: [
@@ -13,9 +12,8 @@ export const SHOP = {
         { name: "Adventure", iconClass: "icon-shirt" },
       ],
     },
-
     {
-      name: "Books",
+      name: "Women's & Girls' Fashion",
       sub: [
         { name: "Academic", iconClass: "icon-short" },
         { name: "Romance", iconClass: "icon-pant" },
@@ -27,7 +25,7 @@ export const SHOP = {
       ],
     },
     {
-      name: "clothing",
+      name: "Health & Beauty",
       sub: [
         { name: "accessories", iconClass: "icon-accessories" },
         { name: "pants", iconClass: "icon-pant" },
@@ -39,7 +37,7 @@ export const SHOP = {
       ],
     },
     {
-      name: "fruits",
+      name: "Watches, Bags, Jewellery",
       sub: [
         { name: "vegatables", iconClass: "icon-vegetable" },
         { name: "fruits", iconClass: "icon-fruit" },
@@ -48,7 +46,7 @@ export const SHOP = {
       ],
     },
     {
-      name: "electronic",
+      name: "Men's & Boys' Fashion",
       sub: [
         { name: "air conditioning", iconClass: "icon-air-conditioning" },
         { name: "phone", iconClass: "icon-phone" },
@@ -59,7 +57,7 @@ export const SHOP = {
       ],
     },
     {
-      name: "furniture",
+      name: "Mother & Baby",
       sub: [
         { name: "table", iconClass: "icon-table" },
         { name: "chair", iconClass: "icon-chair" },
@@ -69,7 +67,67 @@ export const SHOP = {
       ],
     },
     {
-      name: "comestic",
+      name: "Electronics Devices",
+      sub: [
+        { name: "lipstick", iconClass: "icon-lipstick" },
+        { name: "powder", iconClass: "icon-powder" },
+        { name: "perfume", iconClass: "icon-perfurm" },
+        { name: "nail polish", iconClass: "icon-nail" },
+        { name: "mascara", iconClass: "icon-mascara" },
+      ],
+    },
+    {
+      name: "TV & Home Appliances",
+      sub: [
+        { name: "lipstick", iconClass: "icon-lipstick" },
+        { name: "powder", iconClass: "icon-powder" },
+        { name: "perfume", iconClass: "icon-perfurm" },
+        { name: "nail polish", iconClass: "icon-nail" },
+        { name: "mascara", iconClass: "icon-mascara" },
+      ],
+    },
+    {
+      name: "Electronic Accessories",
+      sub: [
+        { name: "lipstick", iconClass: "icon-lipstick" },
+        { name: "powder", iconClass: "icon-powder" },
+        { name: "perfume", iconClass: "icon-perfurm" },
+        { name: "nail polish", iconClass: "icon-nail" },
+        { name: "mascara", iconClass: "icon-mascara" },
+      ],
+    },
+    {
+      name: "Groceries",
+      sub: [
+        { name: "lipstick", iconClass: "icon-lipstick" },
+        { name: "powder", iconClass: "icon-powder" },
+        { name: "perfume", iconClass: "icon-perfurm" },
+        { name: "nail polish", iconClass: "icon-nail" },
+        { name: "mascara", iconClass: "icon-mascara" },
+      ],
+    },
+    {
+      name: "Home & Lifestyle",
+      sub: [
+        { name: "lipstick", iconClass: "icon-lipstick" },
+        { name: "powder", iconClass: "icon-powder" },
+        { name: "perfume", iconClass: "icon-perfurm" },
+        { name: "nail polish", iconClass: "icon-nail" },
+        { name: "mascara", iconClass: "icon-mascara" },
+      ],
+    },
+    {
+      name: "Sports & Outdoors",
+      sub: [
+        { name: "lipstick", iconClass: "icon-lipstick" },
+        { name: "powder", iconClass: "icon-powder" },
+        { name: "perfume", iconClass: "icon-perfurm" },
+        { name: "nail polish", iconClass: "icon-nail" },
+        { name: "mascara", iconClass: "icon-mascara" },
+      ],
+    },
+    {
+      name: "Automotive & Motorbike",
       sub: [
         { name: "lipstick", iconClass: "icon-lipstick" },
         { name: "powder", iconClass: "icon-powder" },
