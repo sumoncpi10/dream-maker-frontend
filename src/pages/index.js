@@ -42,7 +42,7 @@ export default function Home({ productDataHome, productData, itemType }) {
   // );
   // console.log(data)
   return (
-    <LayoutOne title="Homepage 1" style={{ padding: '20px' }} itemType={itemType}>
+    <LayoutOne title="Dream Maker" style={{ padding: '20px' }} itemType={itemType}>
 
       {
         globalCategory == 'All' ?

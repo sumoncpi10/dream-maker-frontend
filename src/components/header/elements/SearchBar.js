@@ -72,7 +72,9 @@ function SearchBarMobile({ fillData, placeholder, itemType }) {
           style={{ width: 150, marginBottom: 8 }}
           onChange={onSelectCategory}
           value={globalCategory}
-        >
+        ><Option key={999} value={'All'}>
+            {"All"}
+          </Option>
           {itemType?.itemType?.map((item, index) => (
             <Option key={index} value={item.title}>
               {item.title}
