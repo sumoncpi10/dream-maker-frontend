@@ -3,7 +3,7 @@ import { Menu, Card } from 'antd';
 import Link from 'next/link';
 
 const TypeSidebar = ({ itemType }) => {
-  console.log(itemType)
+  // console.log(itemType)
   // Sample data for menu categories
   // const itemType = [
   //   {

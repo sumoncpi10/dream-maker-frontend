@@ -7,14 +7,15 @@ import { Select } from "antd";
 import { SHOP } from "../../common/defines";
 import { setSubCategory } from "../../redux/actions/shopActions";
 
-function ShopSidebar({ categories }) {
+function ShopSidebar({ categories, itemType }) {
+  console.log(itemType)
   const { Option } = Select;
   const dispatch = useDispatch();
   const globalState = useSelector((state) => state.globalReducer);
   const shopState = useSelector((state) => state.shopReducer);
 
-  const subCategory = SHOP.category.find(
-    (item) => item.name.toLowerCase() === globalState.category.toLowerCase()
+  const subCategory = itemType?.itemType?.find(
+    (item) => item.title.toLowerCase() === globalState.category.toLowerCase()
   );
   const onChooseSubCategory = (data) => {
     if (!data || data === "all") {
@@ -46,20 +47,20 @@ function ShopSidebar({ categories }) {
             </Link>
           </li>
           {subCategory &&
-            subCategory.sub.slice(0, 7).map((item, index) => (
+            subCategory.categories.slice(0, 7).map((item, index) => (
               <li
                 key={index}
                 className={classNames({
-                  active: shopState.subCategory === item.name,
+                  active: shopState.subCategory === item.title,
                 })}
               >
                 <Link href="#" onClick={(e) => {
                   e.preventDefault();
-                  onChooseSubCategory(item.name);
+                  onChooseSubCategory(item.title);
                 }}>
 
                   <i className={item.iconClass} />
-                  {item.name}
+                  {item.title}
                 </Link>
               </li>
             ))}
@@ -77,11 +78,11 @@ function ShopSidebar({ categories }) {
             All Category
           </Option>
           {subCategory &&
-            subCategory.sub.map((item, index) => (
-              <Option key={index} value={item.name}>
+            subCategory.categories.map((item, index) => (
+              <Option key={index} value={item.title}>
                 {" "}
                 <i className={item.iconClass} />
-                {item.name}
+                {item.title}
               </Option>
             ))}
         </Select>

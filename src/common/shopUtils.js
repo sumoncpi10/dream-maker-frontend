@@ -67,7 +67,7 @@ export const getProductsByFilter = (products, sortType, subCategory) => {
   let filteredProduct = subCategory
     ? products.filter(
       (product) =>
-        product.subCategory.toLowerCase() === subCategory.toLowerCase()
+        product.categorys?.title?.toLowerCase() === subCategory.toLowerCase()
     )
     : products;
   return getProductsBySort(filteredProduct, sortType);

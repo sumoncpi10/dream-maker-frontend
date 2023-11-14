@@ -42,7 +42,7 @@ export default function Home({ productDataHome, productData, itemType }) {
   // );
   // console.log(data)
   return (
-    <LayoutOne title="Homepage 1" style={{ padding: '20px' }} >
+    <LayoutOne title="Homepage 1" style={{ padding: '20px' }} itemType={itemType}>
 
       {
         globalCategory == 'All' ?
@@ -149,7 +149,7 @@ export default function Home({ productDataHome, productData, itemType }) {
             productResponsive={{ xs: 12, sm: 8, md: 6 }}
             productPerPage={15}
             data={[...data]}
-
+            itemType={itemType}
           />
       }
 

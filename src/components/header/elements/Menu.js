@@ -14,7 +14,7 @@ import Container from "../../other/Container";
 import {
   ShoppingFilled
 } from '@ant-design/icons';
-function Menu({ containerType }) {
+function Menu({ containerType, itemType }) {
   const cartState = useSelector((state) => state.cartReducer);
   const wishlistState = useSelector((state) => state.wishlistReducer);
   const [cartSidebarOpen, setCartSidebarOpen] = useState(false);
@@ -30,7 +30,7 @@ function Menu({ containerType }) {
             {/* <img src="/assets/images/logo-dream.png" alt="Logo" /> */}
             <h1 style={{ "color": "white", "fontSize": "45px" }}><ShoppingFilled /> DM Shop</h1>
             {/* </Link> */}
-            <SearchBar fillData={productsData} placeholder="What are you looking for?" />
+            <SearchBar itemType={itemType} fillData={productsData} placeholder="What are you looking for?" />
             <div className="menu-functions">
 
               <div className="menu-function-item" onClick={() => setWishlistSidebarOpen(true)}>
