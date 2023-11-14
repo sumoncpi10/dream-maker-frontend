@@ -47,7 +47,7 @@ function ShopSidebar({ categories, itemType }) {
             </Link>
           </li>
           {subCategory &&
-            subCategory.categories.slice(0, 7).map((item, index) => (
+            subCategory.categories.slice(0, 15).map((item, index) => (
               <li
                 key={index}
                 className={classNames({

@@ -42,7 +42,7 @@ export default function Home({ productDataHome, productData, itemType }) {
   // );
   // console.log(data)
   return (
-    <LayoutOne title="Dream Maker" style={{ padding: '20px' }} itemType={itemType}>
+    <LayoutOne title="Dream Maker || Home" style={{ padding: '20px' }} itemType={itemType}>
 
       {
         globalCategory == 'All' ?
@@ -58,6 +58,25 @@ export default function Home({ productDataHome, productData, itemType }) {
               data={[...productDataHome]}
             /> */}
             <Banners itemType={itemType} />
+            <ShopLayoutHome
+              eightColumn
+              typeSc='Watches, Bags, Jewellery'
+              shopSidebarResponsive={{ xs: 24, lg: 4 }}
+              shopContentResponsive={{ xs: 32, lg: 24 }}
+              productResponsive={{ xs: 24, sm: 8, md: 4, lg: 3, xl: 3 }}
+              productPerPage={8}
+              data={[...productDataHome?.watchesBagsJewellery]}
+            />
+            <ShopLayoutHome
+              eightColumn
+              typeSc='Electronics Devices'
+              shopSidebarResponsive={{ xs: 24, lg: 4 }}
+              shopContentResponsive={{ xs: 32, lg: 24 }}
+              productResponsive={{ xs: 24, sm: 8, md: 4, lg: 3, xl: 3 }}
+              productPerPage={8}
+              data={[...productDataHome?.electronicsDevices]}
+            />
+
             <ShopLayoutHome
               eightColumn
               typeSc='Health & Beauty'
@@ -76,24 +95,7 @@ export default function Home({ productDataHome, productData, itemType }) {
               productPerPage={8}
               data={[...productDataHome?.electronicAccessories]}
             />
-            <ShopLayoutHome
-              eightColumn
-              typeSc='Electronics Devices'
-              shopSidebarResponsive={{ xs: 24, lg: 4 }}
-              shopContentResponsive={{ xs: 32, lg: 24 }}
-              productResponsive={{ xs: 24, sm: 8, md: 4, lg: 3, xl: 3 }}
-              productPerPage={8}
-              data={[...productDataHome?.electronicsDevices]}
-            />
-            <ShopLayoutHome
-              eightColumn
-              typeSc='Watches, Bags, Jewellery'
-              shopSidebarResponsive={{ xs: 24, lg: 4 }}
-              shopContentResponsive={{ xs: 32, lg: 24 }}
-              productResponsive={{ xs: 24, sm: 8, md: 4, lg: 3, xl: 3 }}
-              productPerPage={8}
-              data={[...productDataHome?.watchesBagsJewellery]}
-            />
+
             <ShopLayoutHome
               eightColumn
               typeSc="Men & Boy's Fashion"
