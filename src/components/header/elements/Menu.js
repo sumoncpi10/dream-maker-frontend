@@ -26,10 +26,10 @@ function Menu({ containerType, itemType }) {
       <div className="menu">
         <Container type={containerType}>
           <div className="menu-wrapper">
-            {/* <Link href="/"> */}
-            {/* <img src="/assets/images/logo-dream.png" alt="Logo" /> */}
-            <h1 style={{ "color": "white", "fontSize": "45px" }}><ShoppingFilled /> DM Shop</h1>
-            {/* </Link> */}
+            <Link href="/" style={{ 'text-decoration': 'none' }}>
+              {/* <img src="/assets/images/logo-dream.png" alt="Logo" /> */}
+              <h1 style={{ "color": "white", "fontSize": "45px" }}><ShoppingFilled /> DM Shop</h1>
+            </Link>
             <SearchBar itemType={itemType} fillData={productsData} placeholder="What are you looking for?" />
             <div className="menu-functions">
 

@@ -2,7 +2,7 @@
     width: 30%;
     height: 350px;
     border-radius: 10px;
-    background: #ed7003;
+    background: #db421c;
     margin: 8% auto;
     padding: 20px;
     text-align: center;
@@ -22,7 +22,7 @@
 
 .form button {
     width: 50%;
-    margin-top: 20px;
+    /* margin-top: 20px; */
 }
 
 .social_icons {

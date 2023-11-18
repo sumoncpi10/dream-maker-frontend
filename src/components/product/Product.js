@@ -173,7 +173,8 @@ function Product({ data, productStyle }) {
             href={`/product/[slug]`}
             as={`/product/${data.slug}`}
           >
-            <Link href={"/"} className="product-name">{data?.name}</Link>
+            <Link href={`/product/[slug]`}
+              as={`/product/${data.slug}`} className="product-name">{data?.name}</Link>
           </Link>
           <div className="product-rate">
             <Rate defaultValue={data?.rate} disabled />
