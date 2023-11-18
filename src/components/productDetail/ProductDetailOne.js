@@ -5,6 +5,7 @@ import Container from "../other/Container";
 import ProductDetailContentOne from "./productDetailContent/ProductDetailContentOne";
 import ProductDetailTabOne from "./productDetailTab/ProductDetailTabOne";
 import ProductDetailImageOne from "./productDetailImage/ProductDetailImageOne";
+import Link from "next/link";
 
 function ProductDetailLayoutOne({ data }) {
   return (
@@ -12,8 +13,8 @@ function ProductDetailLayoutOne({ data }) {
       <div className="product-detail-one-top">
         <Container>
           <Breadcrumb className="product-detail-breadcrumb" separator=">">
-            <Breadcrumb.Item>Home</Breadcrumb.Item>
-            <Breadcrumb.Item>Product</Breadcrumb.Item>
+            <Breadcrumb.Item><Link href={"/"}>Home</Link></Breadcrumb.Item>
+            {/* <Breadcrumb.Item><Link>Product</Link></Breadcrumb.Item> */}
             <Breadcrumb.Item>{data.name}</Breadcrumb.Item>
           </Breadcrumb>
           <Row gutter={70}>
@@ -27,7 +28,7 @@ function ProductDetailLayoutOne({ data }) {
         </Container>
       </div>
       <div className="product-detail-one-bottom">
-        <ProductDetailTabOne />
+        <ProductDetailTabOne data={data} />
       </div>
     </div>
   );

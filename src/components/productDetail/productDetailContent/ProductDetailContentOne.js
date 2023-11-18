@@ -39,13 +39,14 @@ function ProductDetailContentOne({
   const onChooseColor = (e) => {
     setCurrentColor(e.target.value);
   };
+  console.log(data)
   return (
     <div className="product-detail-content-one">
       <h3>{data.name}</h3>
       <div className="product-detail-content-one-rate">
         <Rate disabled defaultValue={data.rate} />
         <span className="product-detail-content-one-review-count">
-          - 5 Reviews
+          {`- (${data?.reviewCount?.length ? data?.reviewCount?.length : "0"}) Reviews`}
         </span>
       </div>
       <div className="product-detail-content-one-price">
@@ -59,9 +60,7 @@ function ProductDetailContentOne({
         )}
       </div>
       <p className="product-detail-content-one-description">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi illo
-        possimus quae tenetur. Porro aliquam quaerat dolorum pariatur molestias
-        commodi ipsa
+        {data?.description}
       </p>
       {showCountdown && (
         <>

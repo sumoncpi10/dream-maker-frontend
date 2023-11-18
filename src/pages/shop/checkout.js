@@ -39,7 +39,7 @@ const paymentData = [
   },
 ];
 
-export default function checkout() {
+export default function Checkout() {
   const { Option } = Select;
   const { Panel } = Collapse;
   const router = useRouter();

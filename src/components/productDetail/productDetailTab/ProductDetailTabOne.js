@@ -5,7 +5,7 @@ import ProductDetailReviewItem from "../elements/ProductDetailReviewItem";
 
 const { TabPane } = Tabs;
 
-export default function ProductDetailTabOne() {
+export default function ProductDetailTabOne({ data }) {
   return (
     <div className="product-detail-tab-one">
       <Container>
@@ -48,12 +48,13 @@ export default function ProductDetailTabOne() {
               </p>
             </div>
           </TabPane>
-          <TabPane tab="Customer Reviews(5)" key="2">
+          <TabPane tab={`Customer Reviews(${data?.reviewCount?.length ? data?.reviewCount?.length : "0"})`} key="2">
             <div className="product-detail-tab-item -review">
               <ProductDetailReviewItem />
               <ProductDetailReviewItem />
             </div>
           </TabPane>
+
           <TabPane tab="Additional information" key="3">
             <div className="product-detail-tab-item -info">
               <table>
@@ -90,6 +91,6 @@ export default function ProductDetailTabOne() {
           </TabPane>
         </Tabs>
       </Container>
-    </div>
+    </div >
   );
 }

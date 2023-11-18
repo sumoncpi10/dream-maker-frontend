@@ -12,15 +12,39 @@ import SearchBar from "./SearchBar";
 import { getTotalProductInCart } from "../../../common/shopUtils";
 import Container from "../../other/Container";
 import {
-  ShoppingFilled
+  ShoppingFilled,
+  UserOutlined
 } from '@ant-design/icons';
+import { Menu as AntMenu, Dropdown } from "antd";
+import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 function Menu({ containerType, itemType }) {
   const cartState = useSelector((state) => state.cartReducer);
   const wishlistState = useSelector((state) => state.wishlistReducer);
   const [cartSidebarOpen, setCartSidebarOpen] = useState(false);
   const [menuSidebarOpen, setMenuSidebarOpen] = useState(false);
   const [wishlistSidebarOpen, setWishlistSidebarOpen] = useState(false);
-
+  const { data: session } = useSession();
+  console.log(session?.user);
+  const menu = (
+    <AntMenu>
+      <AntMenu.Item key="dashboard">
+        <Link href={"/dashboard"}>
+          Dashboard
+        </Link>
+      </AntMenu.Item>
+      <AntMenu.Item key="profile">
+        <Link href={"/profile"}>
+          Profile
+        </Link>
+      </AntMenu.Item>
+      <AntMenu.Item key="profile">
+        <Link href={"/logout"}>
+          Log Out
+        </Link>
+      </AntMenu.Item>
+    </AntMenu>
+  );
   return (
     <>
       <div className="menu">
@@ -41,9 +65,19 @@ function Menu({ containerType, itemType }) {
                 <img src="/assets/images/header/menu-bag.png" alt="" />
                 <span>{getTotalProductInCart(cartState)}</span>
               </div>
-              <Button>
-                <Link href="\login">Login</Link>
-              </Button>
+              {
+                session ?
+                  <Dropdown overlay={menu} trigger={['click']}>
+                    <Link href={""} className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
+                      <UserOutlined />
+                    </Link>
+                  </Dropdown>
+                  :
+                  <Button>
+                    <Link href="\login">Login</Link>
+                  </Button>
+              }
+
             </div>
           </div>
         </Container >

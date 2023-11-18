@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { GoogleOutlined, GithubOutlined } from "@ant-design/icons";
 import Head from "next/head";
@@ -80,7 +80,7 @@ const LoginPage = () => {
                     <Button htmlType="submit" loading={loading}>Login</Button>
                     {/* </Form.Item> */}
                     <hr />
-                    <p>Don't have an Account? <Link href="\signup">Sign Up</Link></p>
+                    <p>Dont have an Account? <Link href="\signup">Sign Up</Link></p>
 
                 </Form>
 
