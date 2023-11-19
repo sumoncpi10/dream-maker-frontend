@@ -37,7 +37,7 @@ const LoginPage = () => {
             <Head>
                 <title>Users Login</title>
             </Head>
-            <LayoutOne title="Dream Maker || Home"  >
+            <LayoutOne title="Dream Maker || Login"  >
                 <Form
                     name="login"
                     initialValues={{ remember: true }}

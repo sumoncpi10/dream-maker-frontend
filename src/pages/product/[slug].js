@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import LayoutOne from "../../components/layouts/LayoutOne";
 import { capitalizeFirstLetter } from "../../common/utils";
-import { getProductsBySlug } from "../../common/shopUtils";
+// import { getProductsBySlug } from "../../common/shopUtils";
 import ProductDetailOne from "../../components/productDetail/ProductDetailOne";
 
 export async function getServerSideProps(context) {
