@@ -6,7 +6,8 @@ import ShopLayout from "../components/shop/ShopLayout";
 // import productData from "../data/product.json";
 import useProductData from "../common/useProductData";
 import ShopLayoutHome from "@/components/shop/ShopLayoutHome";
-import Link from "next/link";
+// import Link from "next/link";
+import { useGetCategorysQuery } from "@/redux/features/categroys/categroysApi";
 export async function getStaticProps() {
   const res = await fetch('https://dream-maker-super-shop-backend.vercel.app/api/v1/products/product-type');
   const data = await res.json();
@@ -27,7 +28,9 @@ export default function Home({ productDataHome, productData, itemType }) {
   const router = useRouter();
   console.log(productDataHome)
   console.log(productData)
-  console.log(router.query.q)
+  console.log(router.query.q);
+  const { data: lal } = useGetCategorysQuery();
+  console.log(lal)
   const globalState = useSelector((state) => state.globalReducer);
   const data = useProductData(
     productData,

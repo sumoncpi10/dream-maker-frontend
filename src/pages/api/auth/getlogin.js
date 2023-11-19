@@ -1,3 +1,5 @@
+"use client"
+import { storeUserInfo } from "@/services/user-info";
 
 async function yourDatabaseQueryToFetchUserData(email, password) {
     try {
@@ -13,10 +15,11 @@ async function yourDatabaseQueryToFetchUserData(email, password) {
 
         if (resUser.ok) {
             const { accessToken } = dataUser.data;
+            console.log(accessToken)
+            storeUserInfo(accessToken);
             const user = {
                 accessToken
             };
-
             return user;
         } else {
             console.error("Login failed:", dataUser.message);
