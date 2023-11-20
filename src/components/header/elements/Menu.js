@@ -17,7 +17,9 @@ import {
 } from '@ant-design/icons';
 import { Menu as AntMenu, Dropdown } from "antd";
 import { useRouter } from "next/router";
+import { signOut } from "next-auth/react";
 import { useSession } from "next-auth/react";
+import { storeUserInfo } from "@/services/user-info";
 function Menu({ containerType, itemType }) {
   const cartState = useSelector((state) => state.cartReducer);
   const wishlistState = useSelector((state) => state.wishlistReducer);
@@ -25,7 +27,8 @@ function Menu({ containerType, itemType }) {
   const [menuSidebarOpen, setMenuSidebarOpen] = useState(false);
   const [wishlistSidebarOpen, setWishlistSidebarOpen] = useState(false);
   const { data: session } = useSession();
-  console.log(session?.user);
+  console.log(session?.user?.name);
+  storeUserInfo({ accessToken: session?.user?.name })
   const menu = (
     <AntMenu>
       <AntMenu.Item key="dashboard">
@@ -38,10 +41,10 @@ function Menu({ containerType, itemType }) {
           Profile
         </Link>
       </AntMenu.Item>
-      <AntMenu.Item key="profile">
-        <Link href={"/logout"}>
-          Log Out
-        </Link>
+      <AntMenu.Item key="logout" onClick={() => signOut()}>
+        {/* <Link href={"/logout"}> */}
+        Log Out
+        {/* </Link> */}
       </AntMenu.Item>
     </AntMenu>
   );

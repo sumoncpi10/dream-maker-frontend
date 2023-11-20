@@ -18,17 +18,17 @@ const LoginPage = () => {
         console.log('Received values:', values);
         setLoading(false);
         const result = await signIn('credentials', {
-            // callbackUrl: "http://localhost:3000/",
-            redirect: false,
+            callbackUrl: "http://localhost:3000/",
+            // redirect: false,
             email: values?.email,
             password: values?.password,
         });
         console.log(result)
-        if (!result.error) {
-            console.log('Login successful');
-        } else {
-            console.error(result.error);
-        }
+        // if (!result.error) {
+        //     console.log('Login successful');
+        // } else {
+        //     console.error(result.error);
+        // }
     };
 
 

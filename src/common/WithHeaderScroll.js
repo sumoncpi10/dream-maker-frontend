@@ -43,5 +43,5 @@ export default function withHeaderScroll(WrappedComponent) {
 
 // Helper function to get the display name of the wrapped component
 function getDisplayName(WrappedComponent) {
-  return WrappedComponent.displayName || WrappedComponent.name || 'Component';
+  // return WrappedComponent.displayName || WrappedComponent.name || 'Component';
 }

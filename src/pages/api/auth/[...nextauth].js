@@ -3,6 +3,7 @@ import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import yourDatabaseQueryToFetchUserData from "./getlogin";
+import { storeUserInfo } from "@/services/user-info";
 
 export const authOptions = {
   // Configure one or more authentication providers
@@ -32,8 +33,8 @@ export const authOptions = {
         // For example, check credentials against a database
         const { email, password } = credentials;
         const userdata = await yourDatabaseQueryToFetchUserData(email, password);
-
         if (userdata) {
+          // storeUserInfo(userdata?.accessToken);
           return Promise.resolve({ id: 1, name: userdata.accessToken, email: credentials.email });
         } else {
           return Promise.resolve(null);

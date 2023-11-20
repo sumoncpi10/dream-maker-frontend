@@ -15,8 +15,8 @@ async function yourDatabaseQueryToFetchUserData(email, password) {
 
         if (resUser.ok) {
             const { accessToken } = dataUser.data;
+
             console.log(accessToken)
-            storeUserInfo(accessToken);
             const user = {
                 accessToken
             };
