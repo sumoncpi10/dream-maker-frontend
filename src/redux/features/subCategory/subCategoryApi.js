@@ -4,13 +4,13 @@ import { api } from '@/redux/api/apiSlice';
 const capitalApi = api.injectEndpoints({
     endpoints: (builder) => ({
         getSubCategorys: builder.query({
-            query: () => `/sub-category`,
+            query: () => `/sub-categories`,
             method: "GET",
             providesTags: ['subCategorys'],
         }),
         postSubCategory: builder.mutation({
             query: ({ data }) => ({
-                url: `/sub-category/create-sub-category`,
+                url: `/sub-categories/create-sub-category`,
                 method: 'POST',
                 body: data,
             }),

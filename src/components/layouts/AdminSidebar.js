@@ -66,9 +66,11 @@ const AdminSidebar = ({ children, setZonalCode, setformId }) => {
   else {
     items = [
       getItem('Sub Category', 'sub1', <UserOutlined />, [
+        getItem(<Link href={"/admin/sub-category/create"}>Add Sub Category</Link>, '1'),
         getItem(<Link href={"/admin/sub-category"}>Manage Sub Category</Link>, '2'),
       ]),
       getItem('Category', 'sub2', <UserOutlined />, [
+        getItem(<Link href={"/admin/category/create"}>Add Category</Link>, '3'),
         getItem(<Link href={"/admin/category"}>Manage Category</Link>, '4'),
       ]),
       getItem('User', 'sub3', <UserOutlined />, [
@@ -174,7 +176,7 @@ const AdminSidebar = ({ children, setZonalCode, setformId }) => {
             {children}
           </div>
         </Content>
-        <Footer
+        {/* <Footer
           style={{
             textAlign: 'center',
             padding: '0px 0px'
@@ -182,7 +184,7 @@ const AdminSidebar = ({ children, setZonalCode, setformId }) => {
         >
           Developed By: Md. Daduggaman Sumon, JE(IT) & N M Shohel, JE(IT)
           Copyright Reserved ©2023
-        </Footer>
+        </Footer> */}
       </Layout>
     </Layout>
   );
