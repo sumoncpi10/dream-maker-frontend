@@ -10,11 +10,14 @@ import Loading from "../components/other/Loading";
 import withReduxStore from "../common/withReduxStore";
 
 const App = ({ Component, pageProps, reduxStore }) => {
+  const getLayout = Component.getLayout || ((page) => page)
   return (
-    <SessionProvider>
+    <SessionProvider >
       <Provider store={reduxStore}>
         <PersistGate loading={<Loading />} persistor={persistor}>
-          <Component {...pageProps} />
+          {
+            getLayout(<Component {...pageProps} />)
+          }
         </PersistGate>
       </Provider>
     </SessionProvider>

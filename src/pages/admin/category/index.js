@@ -7,7 +7,7 @@ import UMBreadCrumb from "@/components/UI/UMBreadCrumb";
 import AdminSidebar from "@/components/layouts/AdminSidebar";
 import LayoutOne from "@/components/layouts/LayoutOne";
 
-export default function Dashboard() {
+const CategoryPage = () => {
     const { data, isLoading } = useGetCategorysQuery({ refetchOnMountOrArgChange: true });
     const categroys = data?.data;
     console.log(categroys);
@@ -29,22 +29,32 @@ export default function Dashboard() {
         </Space>
     }
     return (
+
+        <div>
+            <UMBreadCrumb
+                items={
+                    [
+                        {
+                            label: 'Admin',
+                            link: '/admin'
+                        },
+                    ]
+                }
+            />
+
+            <ManageCategory categroys={categroys} ></ManageCategory>
+        </div>
+
+
+    );
+}
+export default CategoryPage;
+CategoryPage.getLayout = function getLayout(page) {
+    return (
         <LayoutOne title="Dream Maker || Home" style={{ padding: '20px' }} >
             <AdminSidebar>
-
-                <UMBreadCrumb
-                    items={
-                        [
-                            {
-                                label: 'Admin',
-                                link: '/admin'
-                            },
-                        ]
-                    }
-                />
-
-                <ManageCategory categroys={categroys} ></ManageCategory>
+                {page}
             </AdminSidebar>
         </LayoutOne>
-    );
+    )
 }

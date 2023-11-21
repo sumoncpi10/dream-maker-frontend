@@ -17,7 +17,7 @@ import UMBreadCrumb from "@/components/UI/UMBreadCrumb";
 import AdminSidebar from "@/components/layouts/AdminSidebar";
 import LayoutOne from "@/components/layouts/LayoutOne";
 
-export default function Dashboard() {
+const AddCategoryPage = () => {
     const { role } = getUserInfo();
     const router = useRouter();
 
@@ -47,26 +47,37 @@ export default function Dashboard() {
         </Space>
     }
     return (
-        <LayoutOne title="Dream Maker || Home" style={{ padding: '20px' }} >
-            <AdminSidebar>
 
-                <UMBreadCrumb
-                    items={
-                        [
-                            {
-                                label: 'Admin',
-                                link: '/admin'
-                            },
-                            {
-                                label: 'Category',
-                                link: '/admin/category'
-                            },
-                        ]
-                    }
-                />
-                <AddCategory itemType={itemType}></AddCategory>
+        <div>
+            <UMBreadCrumb
+                items={
+                    [
+                        {
+                            label: 'Admin',
+                            link: '/admin'
+                        },
+                        {
+                            label: 'Category',
+                            link: '/admin/category'
+                        },
+                    ]
+                }
+            />
+            <AddCategory itemType={itemType}></AddCategory>
+        </div>
 
-            </AdminSidebar>
-        </LayoutOne>
+
     );
 }
+export default AddCategoryPage;
+AddCategoryPage.getLayout = function getLayout(page) {
+    return (
+        <LayoutOne title="Dream Maker || Home" style={{ padding: '20px' }} >
+            <AdminSidebar>
+                {page}
+            </AdminSidebar >
+        </LayoutOne >
+    )
+}
+
+
