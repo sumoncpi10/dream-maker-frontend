@@ -8,7 +8,7 @@ import { Descriptions, Button, Divider } from 'antd';
 import {
     PrinterFilled,
 } from '@ant-design/icons';
-import { useGetDetailedCapitalItemsQuery } from "@/redux/features/capitalItem/capitalApi";
+import { useGetDetailedCapitalItemsQuery } from "@/redux/features/product/productApi";
 const Print = ({ openProduct, setOpenProduct, product }) => {
     const handlePrint = () => {
         window.print();

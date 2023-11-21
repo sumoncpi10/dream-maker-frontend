@@ -1,16 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { SmileOutlined } from '@ant-design/icons';
 import {
     Button,
-    Cascader,
-    DatePicker,
     Form,
     Input,
-    InputNumber,
-    Mentions,
     Select,
-    TimePicker,
-    TreeSelect,
 } from 'antd';
 import { notification } from "antd";
 import { useSession } from 'next-auth/react';
@@ -19,10 +12,9 @@ import { Typography } from 'antd';
 import { useGetBrandsQuery } from '@/redux/features/brand/brandApi';
 import { useGetModelsQuery } from '@/redux/features/model/modelApi';
 import { useGetSuppliersQuery } from '@/redux/features/supplier/supplierApi';
-import { useGetGetItemTypeQuery, useItemTypeQuery } from '@/redux/features/itemType/itemTypeApi';
+import { useGetProductTypeQuery } from '@/redux/features/itemType/itemTypeApi';
 import { useGetCategorysQuery } from '@/redux/features/categroys/categroysApi';
-import { useGetSubCategorysQuery } from '@/redux/features/subCategory/subCategoryApi';
-import { usePostCapitalItemsMutation } from '@/redux/features/capitalItem/capitalApi';
+import { usePostProductMutation } from '@/redux/features/product/productApi';
 import { getUserInfo } from '@/services/user-info';
 const { Title } = Typography;
 const formItemLayout = {
@@ -53,14 +45,15 @@ const config = {
     ],
 };
 
-const AddCapitalItem = ({ subcategroys }) => {
+const AddProduct = ({ subcategroys }) => {
     //console.log(itemType)
     // cole.log(models)
     const [api, contextHolder] = notification.useNotification();
     const { data: session } = useSession();
+    console.log(session)
     const { pbsCode: pbs_code } = getUserInfo();
-    const { data: dataItemType, isLoading } = useGetGetItemTypeQuery();
-    const itemType = dataItemType?.data;
+    const { data: dataItemType, isLoading } = useGetProductTypeQuery();
+    const productType = dataItemType?.data;
     const { data: dataCategroys } = useGetCategorysQuery();
     const categroys = dataCategroys?.data;
     // const { data: dataSubCategroys } = useGetSubCategorysQuery();
@@ -77,7 +70,7 @@ const AddCapitalItem = ({ subcategroys }) => {
     const [filteredModel, setModel] = useState([]);
 
     const handleCategory = (key) => {
-        const newData = categroys.filter((item) => item.itemTypeId == key);
+        const newData = categroys.filter((item) => item.productTypeId == key);
         setFilteredCategory(newData);
     };
     const handleSubCategory = (key) => {
@@ -86,21 +79,26 @@ const AddCapitalItem = ({ subcategroys }) => {
     };
 
     const handleModel = (key) => {
-        const newData = models.filter((item) => item.brandId === key); // Use strict equality (===)
+        const newData = models?.filter((item) => item.brandId === key); // Use strict equality (===)
         setModel(newData);
     };
-    const [postCapitalItems, { isSuccess, isError }] = usePostCapitalItemsMutation()
+    const [postProduct, { isSuccess, isError }] = usePostProductMutation()
 
     const onFinish = async (values) => {
-        //console.log('Received values:', values);
+        console.log('Received values:', values);
         // const pbsCode = session?.pbs_code?.pbs_code;
-        const addByMobileNo = session?.mobileNo?.mobileNo;
-        const withvalues = { ...values, pbsCode: pbs_code, addByMobileNo };
+        const email = session?.user?.email;
+        const { thmb1, thmb2, img1, img2, img3, img4, ...remainingValues } = values;
+        const withvalues = {
+            ...remainingValues,
+            thumbImage: [thmb1, thmb2],
+            images: [img1, img2, img3, img4]
+        };
+        console.log(withvalues)
         const options = {
-            id: pbs_code,
             data: withvalues
         }
-        const result = await postCapitalItems(options);
+        const result = await postProduct(options);
         console.log(result?.statusCode);
         if (result?.data?.statusCode == 200) {
             const openNotificationWithIcon = (type) => {
@@ -122,10 +120,10 @@ const AddCapitalItem = ({ subcategroys }) => {
     return (
         <Form {...formItemLayout} style={{ maxWidth: 600, margin: '0 auto' }} onFinish={onFinish}>
             {contextHolder}
-            <Title level={2} style={{ paddingLeft: '30%' }}>Add Capital Item</Title>
+            <Title level={2} style={{ paddingLeft: '30%' }}>Add Product</Title>
             <Form.Item
-                label="Serial Number"
-                name="serialNo"
+                label="Name"
+                name="name"
                 hasFeedback
                 rules={[
                     {
@@ -135,6 +133,59 @@ const AddCapitalItem = ({ subcategroys }) => {
                 ]}
             >
                 <Input placeholder="Serial Number" />
+            </Form.Item>
+
+            <Form.Item
+                label="Price"
+                name="price"
+                hasFeedback
+                rules={[
+                    {
+                        required: true,
+                        message: 'Please provide Price',
+                    },
+                ]}
+            >
+                <Input placeholder="Price" />
+            </Form.Item>
+            <Form.Item
+                label="quantity"
+                name="quantity"
+                hasFeedback
+                rules={[
+                    {
+                        required: true,
+                        message: 'Please provide quantity',
+                    },
+                ]}
+            >
+                <Input placeholder="quantity" />
+            </Form.Item>
+            <Form.Item
+                label="Discount"
+                name="discount"
+                hasFeedback
+                rules={[
+                    {
+                        required: true,
+                        message: 'Please provide Discount',
+                    },
+                ]}
+            >
+                <Input placeholder="Discount" />
+            </Form.Item>
+            <Form.Item
+                label="Ratings"
+                name="rate"
+                hasFeedback
+                rules={[
+                    {
+                        required: true,
+                        message: 'Please provide Ratings',
+                    },
+                ]}
+            >
+                <Input placeholder="Ratings" />
             </Form.Item>
             <Form.Item
                 label="Description"
@@ -149,24 +200,6 @@ const AddCapitalItem = ({ subcategroys }) => {
             >
                 <Input placeholder="Description" />
             </Form.Item>
-
-            <Form.Item name="purchasedate" label="Parchase Date" {...config}>
-                <DatePicker style={{ width: '100%' }} />
-            </Form.Item>
-            <Form.Item
-                label="Price"
-                name="price"
-                hasFeedback
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please provide a Price',
-                    },
-                ]}
-            >
-                <Input placeholder="Price" />
-            </Form.Item>
-
 
 
             <Form.Item label="Warranty" name="warranty" hasFeedback rules={[
@@ -190,16 +223,16 @@ const AddCapitalItem = ({ subcategroys }) => {
                 </Select>
             </Form.Item>
 
-            <Form.Item label="Item Type" name="itemTypeId" hasFeedback rules={[
+            <Form.Item label="Item Type" name="productTypeId" hasFeedback rules={[
                 {
                     required: true,
                     message: 'Please provide a Item Type name',
                 },
             ]}>
                 <Select placeholder="Select a Item Type" allowClear onChange={(value) => handleCategory(value)}>
-                    {itemType?.map((brand) => (brand.itemType === 'Capital' &&
+                    {productType?.map((brand) => (
                         <Option value={brand.id} key={brand.id}>
-                            {brand.itemType}
+                            {brand.title}
                         </Option>
                     ))}
                 </Select>
@@ -213,12 +246,12 @@ const AddCapitalItem = ({ subcategroys }) => {
                 <Select placeholder="Select a Category" allowClear onChange={(value) => handleSubCategory(value)}>
                     {filteredCategory.map((category) => (
                         <Option value={category.id} key={category.id}>
-                            {category.categoryName}
+                            {category.title}
                         </Option>
                     ))}
                 </Select>
             </Form.Item>
-            <Form.Item label="Sub Category" name="subCategoryid" hasFeedback rules={[
+            <Form.Item label="Sub Category" name="subCategoryId" hasFeedback rules={[
                 {
                     required: true,
                     message: 'Please provide a Sub Category name',
@@ -227,7 +260,7 @@ const AddCapitalItem = ({ subcategroys }) => {
                 <Select placeholder="Select a Sub Category" allowClear>
                     {filteredSubCategory.map((subcategroy) => (
                         <Option value={subcategroy.id} key={subcategroy.id}>
-                            {subcategroy.subCategoryName}
+                            {subcategroy.title}
                         </Option>
                     ))}
                 </Select>
@@ -241,24 +274,24 @@ const AddCapitalItem = ({ subcategroys }) => {
                 <Select placeholder="Select a Brand" allowClear onChange={(value) => handleModel(value)}>
                     {brands?.map((brand) => (
                         <Option value={brand.id} key={brand.id}>
-                            {brand.brandName}
+                            {brand.title}
                         </Option>
                     ))}
                 </Select>
             </Form.Item>
-            <Form.Item
+            {/* <Form.Item
                 label="Model"
                 name="modelId"
                 hasFeedback
                 rules={[
                     {
-                        required: true,
+                        // required: true,
                         message: 'Please provide a Model name',
                     },
                 ]}
             >
                 <Select placeholder="Select a Model" allowClear >
-                    {filteredModel.map((model) => (
+                    {filteredModel?.map((model) => (
                         <Select.Option value={model.id} key={model.id}>
                             {model.modelName}
                         </Select.Option>
@@ -267,7 +300,7 @@ const AddCapitalItem = ({ subcategroys }) => {
             </Form.Item>
             <Form.Item label="Supplier" name="supplierId" hasFeedback rules={[
                 {
-                    required: true,
+                    // required: true,
                     message: 'Please provide a Supplier name',
                 },
             ]}>
@@ -278,8 +311,85 @@ const AddCapitalItem = ({ subcategroys }) => {
                         </Option>
                     ))}
                 </Select>
+            </Form.Item> */}
+            <Form.Item
+                label="Thumb Image URL1"
+                name="thmb1"
+                hasFeedback
+                rules={[
+                    {
+                        required: true,
+                        message: 'Please provide a Thumb Image URL1',
+                    },
+                ]}
+            >
+                <Input placeholder="Thumb Image URL1" />
             </Form.Item>
-
+            <Form.Item
+                label="Thumb Image URL2"
+                name="thmb2"
+                hasFeedback
+                rules={[
+                    {
+                        required: true,
+                        message: 'Please provide a Thumb Image URL2',
+                    },
+                ]}
+            >
+                <Input placeholder="Thumb Image URL2" />
+            </Form.Item>
+            <Form.Item
+                label="Image URL1"
+                name="img1"
+                hasFeedback
+                rules={[
+                    {
+                        required: true,
+                        message: 'Please provide a Image1',
+                    },
+                ]}
+            >
+                <Input placeholder="Image1" />
+            </Form.Item>
+            <Form.Item
+                label="Image URL2"
+                name="img2"
+                hasFeedback
+                rules={[
+                    {
+                        required: true,
+                        message: 'Please provide a Image2',
+                    },
+                ]}
+            >
+                <Input placeholder="Image2" />
+            </Form.Item>
+            <Form.Item
+                label="Image URL3"
+                name="img3"
+                hasFeedback
+                rules={[
+                    {
+                        required: true,
+                        message: 'Please provide a Image3',
+                    },
+                ]}
+            >
+                <Input placeholder="Image3" />
+            </Form.Item>
+            <Form.Item
+                label="Image URL4"
+                name="img4"
+                hasFeedback
+                rules={[
+                    {
+                        required: true,
+                        message: 'Please provide a Image4',
+                    },
+                ]}
+            >
+                <Input placeholder="Image4" />
+            </Form.Item>
             <Form.Item wrapperCol={{ xs: { span: 24, offset: 0 }, sm: { span: 14, offset: 6 } }}>
                 <Button type="primary" htmlType="submit" block>
                     Submit
@@ -289,4 +399,4 @@ const AddCapitalItem = ({ subcategroys }) => {
     );
 };
 
-export default AddCapitalItem;
+export default AddProduct;

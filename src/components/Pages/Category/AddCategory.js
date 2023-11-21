@@ -16,7 +16,7 @@ import { notification } from "antd";
 import { useSession } from 'next-auth/react';
 const { Option } = Select;
 import { Typography } from 'antd';
-import { useGetGetItemTypeQuery } from '@/redux/features/itemType/itemTypeApi';
+import { useGetProductTypeQuery } from '@/redux/features/itemType/itemTypeApi';
 import { usePostSuppliersMutation } from '@/redux/features/supplier/supplierApi';
 import { usePostCategoryMutation } from '@/redux/features/categroys/categroysApi';
 const { Title } = Typography;

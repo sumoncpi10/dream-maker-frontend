@@ -20,7 +20,7 @@ import { useGetCategorysQuery } from '@/redux/features/categroys/categroysApi';
 import { useGetBrandsQuery } from '@/redux/features/brand/brandApi';
 import { useGetModelsQuery } from '@/redux/features/model/modelApi';
 import { useGetSuppliersQuery } from '@/redux/features/supplier/supplierApi';
-import { useGetGetItemTypeQuery } from '@/redux/features/itemType/itemTypeApi';
+import { useGetProductTypeQuery } from '@/redux/features/itemType/itemTypeApi';
 import { usePostRevenueItemsMutation } from '@/redux/features/revenue/revenueApi';
 import { getUserInfo } from '@/services/user-info';
 const { Title } = Typography;
@@ -57,7 +57,7 @@ const AddRevenueItem = ({ subcategroys }) => {
     // cole.log(models)
     const [api, contextHolder] = notification.useNotification();
     const { data: session } = useSession();
-    const { data: dataItemType, isLoading } = useGetGetItemTypeQuery();
+    const { data: dataItemType, isLoading } = useGetProductTypeQuery();
     const itemType = dataItemType?.data;
     const { data: dataCategroys } = useGetCategorysQuery();
     const categroys = dataCategroys?.data;

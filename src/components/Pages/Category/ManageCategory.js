@@ -10,7 +10,7 @@ import {
   PrinterFilled
 } from '@ant-design/icons';
 
-import { useGetGetItemTypeQuery } from '@/redux/features/itemType/itemTypeApi';
+import { useGetProductTypeQuery } from '@/redux/features/itemType/itemTypeApi';
 // import Print from '@/components/UI/Print';
 const { Title } = Typography;
 const EditableRow = ({ index, ...props }) => {
@@ -92,7 +92,7 @@ const EditableCell = ({
 const ManageCategory = ({ categroys }) => {
   //console.log(categroys);
   const [dataSource, setDataSource] = useState(categroys);
-  const { data, isLoading } = useGetGetItemTypeQuery({ refetchOnMountOrArgChange: true });
+  const { data, isLoading } = useGetProductTypeQuery({ refetchOnMountOrArgChange: true });
   const itemType = data?.data;
   // console.log(itemType)
 

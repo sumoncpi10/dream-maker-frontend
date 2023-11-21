@@ -2,9 +2,18 @@ import { api } from '@/redux/api/apiSlice';
 
 const capitalApi = api.injectEndpoints({
     endpoints: (builder) => ({
-        getCapitalItems: builder.query({
-            query: ({ id }) => `/capital-item/${id}`,
+        getProducts: builder.query({
+            query: () => `/products`,
+            method: "GET",
             providesTags: ['capitalItems'],
+        }),
+        postProduct: builder.mutation({
+            query: ({ data }) => ({
+                url: `/products/create-product`,
+                method: 'POST',
+                body: data,
+            }),
+            invalidatesTags: ['capitalItems', 'DeetailByIndentfication', 'MyCapitalItems', 'NotCertifyCapitalItems', 'NotApproveCapitalItems', 'NotAssignCapitalItems', 'NotReceivedCapitalItems'],
         }),
         getDetailedCapitalItems: builder.query({
             query: ({ id }) => `/capital-item/identification-no/${id}`,
@@ -54,14 +63,7 @@ const capitalApi = api.injectEndpoints({
             }),
             invalidatesTags: ['capitalItems', 'MyCapitalItems', 'DeetailByIndentfication', 'NotReceivedCapitalItems'],
         }),
-        postCapitalItems: builder.mutation({
-            query: ({ id, data }) => ({
-                url: `/capital-item/create-capital-item`,
-                method: 'POST',
-                body: data,
-            }),
-            invalidatesTags: ['capitalItems', 'DeetailByIndentfication', 'MyCapitalItems', 'NotCertifyCapitalItems', 'NotApproveCapitalItems', 'NotAssignCapitalItems', 'NotReceivedCapitalItems'],
-        }),
+
         updateCapitalItems: builder.mutation({
             query: ({ id, data }) => ({
                 url: `/capital-item/${id}`,
@@ -82,7 +84,8 @@ const capitalApi = api.injectEndpoints({
 });
 
 export const {
-    useGetCapitalItemsQuery,
+    useGetProductsQuery,
+    usePostProductMutation,
     useGetDetailedCapitalItemsQuery,
     useGetMyCapitalItemsQuery,
     useGetNotCertifyCapitalItemsQuery,
@@ -92,7 +95,6 @@ export const {
     useGetNotAssignCapitalItemsQuery,
     useGetNotReceivedCapitalItemsQuery,
     useReceiveCapitalItemsMutation,
-    usePostCapitalItemsMutation,
     useUpdateCapitalItemsMutation,
     useIssueCapitalItemsMutation
 } = capitalApi;

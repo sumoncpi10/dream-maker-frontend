@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 import AdminSidebar from "@/components/layouts/AdminSidebar";
 import LayoutOne from "@/components/layouts/LayoutOne";
 
-export default function Dashboard() {
+const AddSubCategoryPage = () => {
     const { role } = getUserInfo();
     const router = useRouter();
 
@@ -41,31 +41,38 @@ export default function Dashboard() {
     }
 
     return (
+        <div>
+
+            <UMBreadCrumb
+                items={
+                    [
+                        {
+                            label: 'Admin',
+                            link: '/admin'
+                        },
+                        {
+                            label: 'Category',
+                            link: '/admin/category'
+                        },
+                        {
+                            label: 'Sub Category',
+                            link: '/admin/sub-category'
+                        },
+                    ]
+                }
+            />
+            <AddSubCategory categroys={categroys}></AddSubCategory>
+        </div>
+    );
+}
+export default AddSubCategoryPage;
+AddSubCategoryPage.getLayout = function getLayout(page) {
+    return (
         <LayoutOne title="Dream Maker || Home" style={{ padding: '20px' }} >
             <AdminSidebar>
-
-                <UMBreadCrumb
-                    items={
-                        [
-                            {
-                                label: 'Admin',
-                                link: '/admin'
-                            },
-                            {
-                                label: 'Category',
-                                link: '/admin/category'
-                            },
-                            {
-                                label: 'Sub Category',
-                                link: '/admin/sub-category'
-                            },
-                        ]
-                    }
-                />
-                <AddSubCategory categroys={categroys}></AddSubCategory>
-
-            </AdminSidebar>
-        </LayoutOne>
-    );
+                {page}
+            </AdminSidebar >
+        </LayoutOne >
+    )
 }
 

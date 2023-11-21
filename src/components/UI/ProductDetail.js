@@ -9,7 +9,7 @@ import {
     PrinterFilled,
     FundViewOutlined
 } from '@ant-design/icons';
-import { useGetDetailedCapitalItemsQuery } from "@/redux/features/capitalItem/capitalApi";
+import { useGetDetailedCapitalItemsQuery } from "@/redux/features/product/productApi";
 const ProductDetail = ({ openProduct, setOpenProduct, product }) => {
     const { data, isLoading } = useGetDetailedCapitalItemsQuery({ id: product?.identificationNo }, { refetchOnMountOrArgChange: true });
     let SelectedCapitalItem = "";

@@ -3,7 +3,7 @@ import { api } from '@/redux/api/apiSlice';
 
 const capitalApi = api.injectEndpoints({
     endpoints: (builder) => ({
-        getGetItemType: builder.query({
+        getProductType: builder.query({
             query: () => `/product-type`,
             method: "GET",
         }),
@@ -11,5 +11,5 @@ const capitalApi = api.injectEndpoints({
 });
 
 export const {
-    useGetGetItemTypeQuery,
+    useGetProductTypeQuery,
 } = capitalApi;

@@ -10,7 +10,7 @@ import {
 } from '@ant-design/icons';
 import { useSession } from 'next-auth/react';
 import Print from '@/components/UI/Print';
-import { useGetCapitalItemsQuery } from '@/redux/features/capitalItem/capitalApi';
+import { useGetProductsQuery } from '@/redux/features/product/productApi';
 import { useUpdateServicingMutation } from '@/redux/features/servicing/servicingApi';
 const { Title } = Typography;
 const EditableRow = ({ index, ...props }) => {
@@ -92,7 +92,7 @@ const EditableCell = ({
 const ManageServicing = ({ servicing }) => {
     //console.log(servicing);
     const { data: session } = useSession();
-    const { data: dataCapitalItem } = useGetCapitalItemsQuery();
+    const { data: dataCapitalItem } = useGetProductsQuery();
     const capitalItem = dataCapitalItem?.data;
     const [dataSource, setDataSource] = useState(servicing);
     const [count, setCount] = useState(2);

@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Button, Modal, Form, Input, Popconfirm, Table, DatePicker, Select, Space } from 'antd';
 const { Option } = Select;
 import { notification } from "antd";
-import moment from 'moment';
+// import moment from 'moment';
 import {
   DeleteFilled,
   EditFilled,
@@ -14,9 +14,9 @@ import { Typography } from 'antd';
 import { useSession } from 'next-auth/react';
 import ProductDetail from '@/components/UI/ProductDetail';
 import Print from '@/components/UI/Print';
-import { useUpdateCapitalItemsMutation } from '@/redux/features/capitalItem/capitalApi';
+import { useUpdateCapitalItemsMutation } from '@/redux/features/product/productApi';
 import { getUserInfo } from '@/services/user-info';
-import { useGetGetItemTypeQuery } from '@/redux/features/itemType/itemTypeApi';
+import { useGetProductTypeQuery } from '@/redux/features/itemType/itemTypeApi';
 import { useGetCategorysQuery } from '@/redux/features/categroys/categroysApi';
 import { useGetSubCategorysQuery } from '@/redux/features/subCategory/subCategoryApi';
 import { useGetBrandsQuery } from '@/redux/features/brand/brandApi';
@@ -108,11 +108,11 @@ const config = {
     },
   ],
 };
-const ManageCapitalItem = ({ capitalItem }) => {
+const ManageProduct = ({ capitalItem }) => {
   //console.log(capitalItem);
   const { data: session } = useSession();
   const { pbsCode: pbs_code, mobileNo } = getUserInfo();
-  const { data: dataitemType } = useGetGetItemTypeQuery();
+  const { data: dataitemType } = useGetProductTypeQuery();
   const itemType = dataitemType?.data;
   const { data: dataCategroys, isLoading } = useGetCategorysQuery();
   const categroys = dataCategroys?.data;
@@ -146,9 +146,9 @@ const ManageCapitalItem = ({ capitalItem }) => {
   const [distinctZonals, setdistinctZonals] = useState([]);
 
   useEffect(() => {
-    const subCategoryNames = Array.from(new Set(capitalItem?.map(item => item?.subCategory?.subCategoryName)));
+    const subCategoryNames = Array.from(new Set(capitalItem?.map(item => item?.subCategorys?.title)));
     setDistinctSubCategories(subCategoryNames);
-    const CategoryNames = Array.from(new Set(capitalItem?.map(item => item?.category?.categoryName)));
+    const CategoryNames = Array.from(new Set(capitalItem?.map(item => item?.categorys?.title)));
     setDistinctCategories(CategoryNames);
     const zonalNames = Array.from(new Set(capitalItem?.map(item => item?.zonals?.zonalName)));
     setdistinctZonals(zonalNames);
@@ -162,82 +162,65 @@ const ManageCapitalItem = ({ capitalItem }) => {
   };
   const defaultColumns = [
     {
-      title: 'Number',
-      dataIndex: 'identificationNo',
-      fixed: 'left',
+      title: 'Name',
+      dataIndex: 'name',
     },
     {
-      title: 'Brand',
-      dataIndex: ['brand', 'brandName'],
+      title: 'quantity',
+      dataIndex: 'quantity',
     },
+    {
+      title: 'price',
+      dataIndex: 'price',
+    },
+    {
+      title: 'Ratings',
+      dataIndex: 'rate',
+    },
+    {
+      title: 'Discount',
+      dataIndex: 'discount',
+    },
+    // {
+    //   title: 'Warranty',
+    //   dataIndex: 'warranty',
+    // },
+
+    // {
+    //   title: 'Brand',
+    //   dataIndex: ['brand', 'brandName'],
+    // },
+
+    // {
+    //   title: 'Model',
+    //   dataIndex: ['model', 'modelName'],
+    //   ellipsis: true,
+    // },
+    // {
+    //   title: 'Description',
+    //   dataIndex: 'description',
+    //   // width: '12%',
+    // },
 
     {
-      title: 'Model',
-      dataIndex: ['model', 'modelName'],
-      ellipsis: true,
-    },
-    {
-      title: 'Description',
-      dataIndex: 'description',
-      // width: '20%',
-      ellipsis: true,
-    },
-    {
-      title: 'Purchase Date',
-      dataIndex: 'purchasedate',
-      // width: '20%',
-      ellipsis: true,
-    },
-    {
-      title: 'User',
-      dataIndex: ['assignTo', 'employee', 'name'],
-      ellipsis: true,
-    },
-    {
-      title: 'Zonal',
-      dataIndex: ['zonals', 'zonalName'],
-      filters: distinctZonals.map(sc => ({
-        text: sc,
-        value: sc,
-      })),
-      onFilter: (value, record) => record?.zonals?.zonalName.indexOf(value) === 0,
-    },
-    {
       title: 'Category',
-      dataIndex: ['category', 'categoryName'],
+      dataIndex: ['categorys', 'title'],
       ellipsis: true,
       filters: distinctCategories.map(sc => ({
         text: sc,
         value: sc,
       })),
-      onFilter: (value, record) => record.category.categoryName.indexOf(value) === 0,
+      onFilter: (value, record) => record?.categorys?.title.indexOf(value) === 0,
     },
     {
       title: 'Sub Category',
-      dataIndex: ['subCategory', 'subCategoryName'],
+      dataIndex: ['title', 'title'],
       filters: distinctSubCategories.map(sc => ({
         text: sc,
         value: sc,
       })),
-      onFilter: (value, record) => record?.subCategory?.subCategoryName?.indexOf(value) === 0,
+      onFilter: (value, record) => record?.subCategorys?.title?.indexOf(value) === 0,
     },
-
-
-    // {
-    //   title: 'Serial',
-    //   dataIndex: 'serialNo',
-    //   ellipsis: true,
-    // },
-
-    // {
-    //   title: 'Warranty',
-    //   dataIndex: 'warranty',
-    // },
-    // {
-    //   title: 'Price',
-    //   dataIndex: 'price',
-    //   sorter: true,
-    // },
     {
       title: 'Acton',
       dataIndex: 'operation',
@@ -249,7 +232,7 @@ const ManageCapitalItem = ({ capitalItem }) => {
               <a><EyeFilled /></a>
             </div>
             <Popconfirm title="Sure to Update?" onConfirm={() => showModal(record)}>
-              {record?.certifiedByMobileNo === null && <a><EditFilled /></a>}
+              {<a><EditFilled /></a>}
             </Popconfirm>
             <Popconfirm title="Sure to delete?" className='margin-3' onConfirm={() => handleDelete(record?.id)}>
               {record?.certifiedByMobileNo === null && <a>< DeleteFilled /></a>}
@@ -405,7 +388,7 @@ const ManageCapitalItem = ({ capitalItem }) => {
       >
         Add a row
       </Button> */}
-      <Title level={2}>Manage Capital Item</Title>
+      <Title level={2}>Manage Product</Title>
       <Print></Print>
 
       <Table
@@ -651,4 +634,4 @@ const ManageCapitalItem = ({ capitalItem }) => {
     </div>
   );
 };
-export default ManageCapitalItem;
+export default ManageProduct;

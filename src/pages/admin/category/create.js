@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 import AddCategory from "@/components/Pages/Category/AddCategory";
 
-import { useGetGetItemTypeQuery } from "@/redux/features/itemType/itemTypeApi";
+import { useGetProductTypeQuery } from "@/redux/features/itemType/itemTypeApi";
 import { getUserInfo } from "@/services/user-info";
 import { useRouter } from 'next/navigation';
 
@@ -26,7 +26,7 @@ const AddCategoryPage = () => {
             router.push("/login")
         }
     }, [router]);
-    const { data, isLoading } = useGetGetItemTypeQuery({ refetchOnMountOrArgChange: true });
+    const { data, isLoading } = useGetProductTypeQuery({ refetchOnMountOrArgChange: true });
     const itemType = data?.data;
     console.log(itemType);
     if (isLoading) {

@@ -14,7 +14,7 @@ import { useSession } from 'next-auth/react';
 import Print from '@/components/UI/Print';
 import { useUpdateRevenueItemsMutation } from '@/redux/features/revenue/revenueApi';
 import { getUserInfo } from '@/services/user-info';
-import { useGetGetItemTypeQuery } from '@/redux/features/itemType/itemTypeApi';
+import { useGetProductTypeQuery } from '@/redux/features/itemType/itemTypeApi';
 import { useGetCategorysQuery } from '@/redux/features/categroys/categroysApi';
 import { useGetSubCategorysQuery } from '@/redux/features/subCategory/subCategoryApi';
 import { useGetBrandsQuery } from '@/redux/features/brand/brandApi';
@@ -130,7 +130,7 @@ const ManageRevenueItem = ({ revenueItem }) => {
     //console.log(revenueItem);
     const { data: session } = useSession();
     const { pbsCode: pbs_code, mobileNo } = getUserInfo();
-    const { data: dataitemType } = useGetGetItemTypeQuery();
+    const { data: dataitemType } = useGetProductTypeQuery();
     const itemType = dataitemType?.data;
     const { data: dataCategroys, isLoading } = useGetCategorysQuery();
     const categroys = dataCategroys?.data;
