@@ -3,7 +3,7 @@ import { api } from '@/redux/api/apiSlice';
 const capitalApi = api.injectEndpoints({
     endpoints: (builder) => ({
         getUsers: builder.query({
-            query: ({ id }) => `/user/${id}`,
+            query: () => `/users`,
             providesTags: ['users'],
         }),
         getZonalTransferRequestedUser: builder.query({
@@ -15,8 +15,8 @@ const capitalApi = api.injectEndpoints({
             providesTags: ['users'],
         }),
         postUsers: builder.mutation({
-            query: ({ id, data }) => ({
-                url: `/user/create-user`,
+            query: ({ data }) => ({
+                url: `/auth/signup`,
                 method: 'POST',
                 body: data,
             }),

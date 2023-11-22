@@ -92,7 +92,7 @@ const ManageUsers = ({ users }) => {
   const defaultColumns = [
     {
       title: 'User ID',
-      dataIndex: 'mobileNo',
+      dataIndex: 'email',
     },
     {
       title: 'Role',
@@ -100,32 +100,18 @@ const ManageUsers = ({ users }) => {
     },
     {
       title: 'Name',
-      dataIndex: ['employee', 'name'],
+      dataIndex: 'name',
       width: '20%',
       editable: true,
     },
     {
-      title: 'Department',
-      dataIndex: ['employee', 'designation', 'department', 'departmentName'],
+      title: 'Mobile',
+      dataIndex: 'contactNo',
     },
     {
-      title: 'Designation',
-      dataIndex: ['employee', 'designation', 'designationName'],
+      title: 'Profile Image',
+      dataIndex: 'profileImg',
     },
-    {
-      title: 'PBS',
-      dataIndex: ['pbs', 'pbsName'],
-    },
-    {
-      title: 'Zonal',
-      dataIndex: ['zonals', 'zonalName'],
-    },
-    {
-      title: 'Complain',
-      dataIndex: ['complainCenter', 'complainName'],
-    },
-
-
     {
       title: 'Action',
       dataIndex: 'operation',

@@ -60,9 +60,9 @@ const AddUser = () => {
 
     const onFinish = async (values) => {
         //console.log('Received values:', values);
-        const withvalues = { ...values, pbsCode: pbs_code };
+        // const withvalues = { ...values, pbsCode: pbs_code };
         const options = {
-            data: withvalues
+            data: values
         }
         const result = await postUsers(options);
         console.log(result)
@@ -83,11 +83,11 @@ const AddUser = () => {
         }
     };
     const roles = [
-        { id: 7, role: 'employee', value: 'user' },
-        { id: 6, role: 'Store Incharge', value: 'incharge' },
-        { id: 5, role: 'Store Head', value: 'storeHead' },
-        { id: 4, role: 'Office Head', value: 'officeHead' },
-        { id: 3, role: 'Zonal Admin', value: 'zonaladmin' },
+        // { id: 7, role: 'employee', value: 'user' },
+        // { id: 6, role: 'Store Incharge', value: 'incharge' },
+        // { id: 5, role: 'Store Head', value: 'storeHead' },
+        // { id: 4, role: 'Office Head', value: 'officeHead' },
+        // { id: 3, role: 'Zonal Admin', value: 'zonaladmin' },
         { id: 2, role: 'Admin', value: 'admin' },
         { id: 1, role: 'Super Admin', value: 'super_admin' },
     ]
@@ -122,46 +122,19 @@ const AddUser = () => {
                     ))}
                 </Select>
             </Form.Item>
-            <Form.Item label="Department" name="departmentId" hasFeedback rules={[
-                {
-                    required: true,
-                    message: 'Please provide a Department',
-                },
-            ]}>
-                <Select placeholder="Select a Department" allowClear onChange={(value) => handleDesignations(value)}>
-                    {departments?.map((brand) => (
-                        <Option value={brand.id} key={brand.id}>
-                            {brand.departmentName}
-                        </Option>
-                    ))}
-                </Select>
-            </Form.Item>
-            <Form.Item label="Designation" name="designationId" hasFeedback rules={[
-                {
-                    required: true,
-                    message: 'Please provide a Designation',
-                },
-            ]}>
-                <Select placeholder="Select a Designation" allowClear>
-                    {filteredDesignation?.map((brand) => (
-                        <Option value={brand.id} key={brand.id}>
-                            {brand.designationName}
-                        </Option>
-                    ))}
-                </Select>
-            </Form.Item>
+
             <Form.Item
-                label="Phone"
-                name="mobileNo"
+                label="Email"
+                name="email"
                 hasFeedback
                 rules={[
                     {
                         required: true,
-                        message: 'Please provide a Phone Number',
+                        message: 'Please provide a Email',
                     },
                 ]}
             >
-                <Input placeholder="Phone Number" />
+                <Input placeholder="Email" />
             </Form.Item>
             <Form.Item label="Password" name="password" hasFeedback >
                 <Input.Password placeholder="with input password" />

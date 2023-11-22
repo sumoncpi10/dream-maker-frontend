@@ -1,22 +1,19 @@
 
-import Header from "@/components/Layout/Header";
 
-import AdminSidebar from "@/components/Layout/AdminSidebar";
 
-import ManageCategory from "@/components/Pages/Category/ManageCategory";
-
-import { useGetCategorysQuery } from "@/redux/features/categroys/categroysApi";
 import { Space, Spin } from "antd";
 import ManageUsers from "@/components/Pages/Users/ManageUsers";
 import { useGetUsersQuery } from "@/redux/features/user/userApi";
 import { useSession } from "next-auth/react";
 import UMBreadCrumb from "@/components/UI/UMBreadCrumb";
 import { getUserInfo } from "@/services/user-info";
+import LayoutOne from "@/components/layouts/LayoutOne";
+import AdminSidebar from "@/components/layouts/AdminSidebar";
 
 const UsersPage = () => {
     const { data: session } = useSession();
     const { pbsCode: pbs_code } = getUserInfo();
-    const { data, isLoading } = useGetUsersQuery({ id: pbs_code }, { refetchOnMountOrArgChange: true });
+    const { data, isLoading } = useGetUsersQuery({ refetchOnMountOrArgChange: true });
     const users = data?.data;
     console.log(users);
     if (isLoading) {
@@ -55,10 +52,10 @@ const UsersPage = () => {
 export default UsersPage;
 UsersPage.getLayout = function getLayout(page) {
     return (
-        <Header>
+        <LayoutOne title="Dream Maker || Users" style={{ padding: '20px' }}>
             <AdminSidebar>
                 {page}
             </AdminSidebar>
-        </Header >
+        </LayoutOne >
     )
 }

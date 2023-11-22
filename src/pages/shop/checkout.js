@@ -347,7 +347,7 @@ export default function Checkout() {
             </Row>
           </Container>
         </div>
-        <div className="checkout-bottom">
+        {/* <div className="checkout-bottom">
           <Container>
             <h5>Discount When Purchased Together</h5>
             <div className="checkout-related-products">
@@ -360,7 +360,7 @@ export default function Checkout() {
               </Slider>
             </div>
           </Container>
-        </div>
+        </div> */}
         <div className="checkout-sticky">
           <Container>
             <div className="checkout-functions">
@@ -404,7 +404,7 @@ export default function Checkout() {
                 htmlType="submit"
                 style={{ marginBottom: 0 }}
               >
-                Next Step
+                Confirm Order
               </Button>
             </div>
           </Container>

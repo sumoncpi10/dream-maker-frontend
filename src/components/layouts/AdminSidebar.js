@@ -77,14 +77,14 @@ const AdminSidebar = ({ children, setZonalCode, setformId }) => {
         getItem(<Link href={"/admin/category/create"}>Add Category</Link>, '3'),
         getItem(<Link href={"/admin/category"}>Manage Category</Link>, '4'),
       ]),
-      // getItem('User', 'sub3', <UserOutlined />, [
-      //   getItem(<Link href={"/admin/user/create"}>Add User</Link>, '5'),
-      //   getItem(<Link href={"/admin/user"}>Manage User</Link>, '6'),
-      //   getItem(<Link href={"/admin/user/request-zonal-transfer"}>Request Zonal Transfer</Link>, '7'),
-      //   getItem(<Link href={"/admin/user/approve-zonal-transfer"}>Approve Zonal Transfer</Link>, '8'),
-      //   getItem(<Link href={"/admin/user/request-pbs-transfer"}>Request PBS Transfer</Link>, '9'),
-      //   getItem(<Link href={"/admin/user/approve-pbs-transfer"}>Release PBS Transfer</Link>, '10'),
-      // ]),
+      getItem('User', 'sub4', <UserOutlined />, [
+        getItem(<Link href={"/admin/user/create"}>Add User</Link>, '5'),
+        getItem(<Link href={"/admin/user"}>Manage User</Link>, '6'),
+        // getItem(<Link href={"/admin/user/request-zonal-transfer"}>Request Zonal Transfer</Link>, '7'),
+        // getItem(<Link href={"/admin/user/approve-zonal-transfer"}>Approve Zonal Transfer</Link>, '8'),
+        // getItem(<Link href={"/admin/user/request-pbs-transfer"}>Request PBS Transfer</Link>, '9'),
+        // getItem(<Link href={"/admin/user/approve-pbs-transfer"}>Release PBS Transfer</Link>, '10'),
+      ]),
 
       // getItem('Designation', 'sub4', <UserOutlined />, [
       //   getItem(<Link href={"/admin/designation"}>Manage Designation</Link>, '12'),

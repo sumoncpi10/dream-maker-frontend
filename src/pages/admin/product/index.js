@@ -1,14 +1,10 @@
 
 
-import Header from '@/components/Layout/Header';
-import InfoEntrySidebar from '@/components/Layout/InfoEntrySidebar';
-import FeaturedCategories from '@/components/UI/FeaturedCategories';
+
 import React, { useState } from 'react';
-import { message, notification } from "antd";
-import { getSession, useSession } from 'next-auth/react';
-import ManageCapitalItem from '@/components/Pages/Info/ManageProduct';
-import AddCapitalItem from '@/components/Pages/Info/AddProduct';
-import { Alert, Space, Spin } from 'antd';
+import { notification } from "antd";
+import { useSession } from 'next-auth/react';
+import { Space, Spin } from 'antd';
 import { useGetProductsQuery } from '@/redux/features/product/productApi';
 import UMBreadCrumb from '@/components/UI/UMBreadCrumb';
 import { getUserInfo } from '@/services/user-info';
@@ -18,11 +14,6 @@ import ManageProduct from '@/components/Pages/Info/ManageProduct';
 
 const ManageProductPage = () => {
     const [api, contextHolder] = notification.useNotification();
-    const { data: session } = useSession();
-    const [formId, setFormId] = useState();
-
-    const { pbsCode: pbs_code } = getUserInfo();
-
     const { data, isLoading } = useGetProductsQuery({ refetchOnMountOrArgChange: true });
     const product = data?.data;
     console.log(product)
