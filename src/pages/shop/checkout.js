@@ -20,20 +20,21 @@ import LayoutOne from "../../components/layouts/LayoutOne";
 import Container from "../../components/other/Container";
 import productData from "../../data/product.json";
 import Product from "../../components/product/Product";
+import { getUserInfo } from "@/services/user-info";
 
 const paymentData = [
   {
     name: "Direct Bank Transfer",
     content:
-      "With so many different ways today to find information online, it can sometimes be hard to know where to go to first.",
+      "Transfer Money To This DBBL(Dutch Bangla Bank) Account Number - 151.........",
   },
   {
-    name: "Cheque Payment",
+    name: "Bkash Payment",
     content:
-      "With so many different ways today to find information online, it can sometimes be hard to know where to go to first.",
+      "Go to Payment Option And Pay to this Account Number - 01000000000",
   },
   {
-    name: "PayPal",
+    name: "SSL Comerz",
     content:
       "With so many different ways today to find information online, it can sometimes be hard to know where to go to first.",
   },
@@ -87,8 +88,11 @@ export default function Checkout() {
     },
     [paymentMethod]
   );
+  const { email, name } = getUserInfo()
+  console.log(cartState, email, name)
   return (
     <LayoutOne title="Checkout">
+
       <div className="checkout">
         <div className="checkout-top">
           <Container>
@@ -107,12 +111,12 @@ export default function Checkout() {
                   <Row gutter={{ xs: 10, sm: 15, md: 30, lg: 70 }}>
                     <Col span={24} md={12}>
                       <Form.Item
-                        label="First name"
-                        name="firstname"
+                        label="Name"
+                        name="name"
                         rules={[
                           {
                             required: true,
-                            message: "Please input your first name!",
+                            message: "Please input your name!",
                           },
                         ]}
                       >
@@ -121,12 +125,12 @@ export default function Checkout() {
                     </Col>
                     <Col span={24} md={12}>
                       <Form.Item
-                        label="Last name"
-                        name="lastname"
+                        label="Phone number"
+                        name="phone"
                         rules={[
                           {
                             required: true,
-                            message: "Please input your last name!",
+                            message: "Please input your phone number !",
                           },
                         ]}
                       >
@@ -169,25 +173,7 @@ export default function Checkout() {
                         </Select>
                       </Form.Item>
                     </Col>
-                    <Col span={24} md={12}>
-                      <Form.Item
-                        label="Address"
-                        name="address"
-                        rules={[
-                          {
-                            required: true,
-                            message: "Please input your address!",
-                          },
-                        ]}
-                      >
-                        <Input />
-                      </Form.Item>
-                    </Col>
-                    <Col span={24} md={12}>
-                      <Form.Item label="Address 2" name="address2">
-                        <Input />
-                      </Form.Item>
-                    </Col>
+
                     <Col span={24} md={12}>
                       <Form.Item
                         label="Country/States"
@@ -212,29 +198,33 @@ export default function Checkout() {
                       </Form.Item>
                     </Col>
                     <Col span={24} md={12}>
-                      <Form.Item label="Email" name="email">
-                        <Input />
-                      </Form.Item>
-                    </Col>
-                    <Col span={24} md={12}>
                       <Form.Item
-                        label="Phone number"
-                        name="phone"
+                        label="Address"
+                        name="address"
                         rules={[
                           {
                             required: true,
-                            message: "Please input your phone number !",
+                            message: "Please input your address!",
                           },
                         ]}
                       >
                         <Input />
                       </Form.Item>
                     </Col>
+
+                    <Col span={24} md={12}>
+                      <Form.Item label="Email" name="email">
+                        <Input />
+                      </Form.Item>
+                    </Col>
+                    <Col span={24} md={12}>
+
+                    </Col>
                     <Col span={24}>
                       <Form.Item name="news-subcribe" valuePropName="checked">
                         <Checkbox>
                           I want to receive exclusive discounts and information
-                          on the latest Stora trends.
+                          on the latest Dream Maker Super Shop trends.
                         </Checkbox>
                       </Form.Item>
                     </Col>
