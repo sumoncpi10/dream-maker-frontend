@@ -1,16 +1,25 @@
+
 import AdminSidebar from "@/components/layouts/AdminSidebar";
 import LayoutOne from "@/components/layouts/LayoutOne";
 
 
-export default function Dashboard() {
-
+// export default function DashboardPage() {
+const DashboardPage = () => {
     return (
-        <LayoutOne title="Dream Maker || Home" style={{ padding: '20px' }} >
-            <AdminSidebar>
 
-                <h1>hi</h1>
-            </AdminSidebar>
-        </LayoutOne>
+
+        <h1>hi</h1>
+
     );
 }
 
+export default DashboardPage;
+DashboardPage.getLayout = function getLayout(page) {
+    return (
+        <LayoutOne title="Dream Maker || Home" style={{ padding: '20px' }} >
+            <AdminSidebar>
+                {page}
+            </AdminSidebar>
+        </LayoutOne>
+    )
+}
