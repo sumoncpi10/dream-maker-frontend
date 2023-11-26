@@ -14,7 +14,7 @@ const TypeSidebar = ({ itemType }) => {
             {category.categories.map((subCategory, subIndex) => (
               <Menu.SubMenu key={`${index}-${subIndex}`} title={subCategory.title} style={{ height: 40, margin: 0, padding: 0, lineHeight: '20px' }}>
                 {subCategory.subcategories.map((item, itemIndex) => (
-                  <Menu.Item key={`${index}-${subIndex}-${itemIndex}`} style={{ height: 40, margin: 0, padding: 0, lineHeight: '20px' }}>
+                  <Menu.Item key={`${index}-${subIndex}-${itemIndex}`} style={{ height: 40, margin: 0, padding: 10, lineHeight: '20px' }}>
                     <Link href={`/products/${encodeURIComponent(item.toLowerCase())}`}>
                       {item}
                     </Link>

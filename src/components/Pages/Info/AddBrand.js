@@ -72,7 +72,7 @@ const AddBrand = () => {
       <Title level={2} style={{ paddingLeft: '35%' }}> Add Brand</Title>
       <Form.Item
         label="Brand Name"
-        name="brandName"
+        name="title"
         hasFeedback
         rules={[
           {

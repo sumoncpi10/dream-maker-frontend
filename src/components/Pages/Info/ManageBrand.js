@@ -96,7 +96,7 @@ const ManageBrand = ({ brands }) => {
   const defaultColumns = [
     {
       title: 'Brand Name',
-      dataIndex: 'brandName',
+      dataIndex: 'title',
       // width: '30%',
       // editable: true,
     },

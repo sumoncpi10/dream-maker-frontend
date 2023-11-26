@@ -20,7 +20,7 @@ const capitalApi = api.injectEndpoints({
                 method: 'POST',
                 body: data,
             }),
-            invalidatesTags: ['users', 'users'],
+            invalidatesTags: ['users'],
         }),
         pbsPostingRequest: builder.mutation({
             query: ({ id }) => ({

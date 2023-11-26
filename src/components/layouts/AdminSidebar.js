@@ -77,6 +77,14 @@ const AdminSidebar = ({ children, setZonalCode, setformId }) => {
         getItem(<Link href={"/admin/category/create"}>Add Category</Link>, '3'),
         getItem(<Link href={"/admin/category"}>Manage Category</Link>, '4'),
       ]),
+      getItem('Brand', 'sub5', <UserOutlined />, [
+        getItem(<Link href={"/admin/brand/create"}>Add Brand</Link>, '45'),
+        getItem(<Link href={"/admin/brand"}>Manage Brand</Link>, '46'),
+      ]),
+      getItem('Supplier', 'sub6', <UserOutlined />, [
+        getItem(<Link href={"/admin/supplier/create"}>Add Supplier</Link>, '47'),
+        getItem(<Link href={"/admin/supplier"}>Manage Supplier</Link>, '48'),
+      ]),
       getItem('User', 'sub4', <UserOutlined />, [
         getItem(<Link href={"/admin/user/create"}>Add User</Link>, '5'),
         getItem(<Link href={"/admin/user"}>Manage User</Link>, '6'),
