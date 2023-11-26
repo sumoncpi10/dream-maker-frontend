@@ -128,11 +128,11 @@ const AddProduct = ({ subcategroys }) => {
                 rules={[
                     {
                         required: true,
-                        message: 'Please provide a Serial Number',
+                        message: 'Please provide a Name',
                     },
                 ]}
             >
-                <Input placeholder="Serial Number" />
+                <Input placeholder="Name" />
             </Form.Item>
 
             <Form.Item

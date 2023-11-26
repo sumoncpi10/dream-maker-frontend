@@ -8,11 +8,11 @@ import TypeSidebar from "./TypeSidebar";
 import Image from "next/image";
 
 const contentStyle = {
-  height: '390px',
+  height: '340px',
   color: '#fff',
-  lineHeight: '390px',
+  lineHeight: '340px',
   textAlign: 'center',
-  background: '#364d79',
+  // background: '#364d79',
 };
 
 export default function Banners({ containerType, itemType }) {
@@ -34,7 +34,7 @@ export default function Banners({ containerType, itemType }) {
                     <div className="banner-item" style={contentStyle}>
                       <Image
                         width={850}
-                        height={390}
+                        height={340}
                         src={`/assets/images/banners/${index + 1}.jpg`}
                         alt="banner"
                       />

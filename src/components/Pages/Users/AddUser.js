@@ -139,6 +139,33 @@ const AddUser = () => {
             <Form.Item label="Password" name="password" hasFeedback >
                 <Input.Password placeholder="with input password" />
             </Form.Item>
+            <Form.Item
+                label="Mobile"
+                name="contactNo"
+                hasFeedback
+                rules={[
+                    {
+                        required: true,
+                        message: 'Please provide a Mobile',
+                    },
+                ]}
+            >
+                <Input placeholder="Mobile" />
+            </Form.Item>
+            <Form.Item
+                label="Profile Image URL"
+                name="profileImg"
+                hasFeedback
+                rules={[
+                    {
+                        required: true,
+                        message: 'Please provide a Profile Image URL',
+                    },
+                ]}
+            >
+                <Input placeholder="Profile Image URL" />
+            </Form.Item>
+
             <Form.Item wrapperCol={{ xs: { span: 24, offset: 0 }, sm: { span: 14, offset: 6 } }}>
                 <Button type="primary" htmlType="submit" block>
                     Submit
