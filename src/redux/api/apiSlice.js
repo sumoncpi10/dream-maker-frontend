@@ -9,6 +9,6 @@ export const api = createApi({
     },
   }),
 
-  tagTypes: ['user', 'PBSTransferUsers', 'ZonalTransferUsers', 'employee', 'capitalItems', 'DeetailByIndentfication', 'MyCapitalItems', 'NotCertifyCapitalItems', 'NotApproveCapitalItems', 'NotAssignCapitalItems', 'NotReceivedCapitalItems', 'revenueItems', 'MyRevenueItems', 'NotAssignRevenueItems', 'NotReceivedRevenueItems', 'suppliers', 'brands', 'models', 'users', 'zonals', 'categorys', 'subCategorys', 'departments', 'designations', 'servicings', 'availabledepartment', 'availableComputers', 'availableDotPrinter', 'availablePRDSCRPCY'],
+  tagTypes: ['user', 'PBSTransferUsers', 'ZonalTransferUsers', 'employee', 'capitalItems', 'DeetailByIndentfication', 'MyCapitalItems', 'NotCertifyCapitalItems', 'NotApproveCapitalItems', 'NotAssignCapitalItems', 'NotReceivedCapitalItems', 'revenueItems', 'MyRevenueItems', 'NotAssignRevenueItems', 'NotReceivedRevenueItems', 'suppliers', 'brands', 'models', 'users', 'zonals', 'categorys', 'subCategorys', 'departments', 'designations', 'servicings', 'availabledepartment', 'availableComputers', 'availableDotPrinter', 'availablePRDSCRPCY', 'orders'],
   endpoints: () => ({}),
 });

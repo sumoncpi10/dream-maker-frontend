@@ -65,6 +65,9 @@ const AdminSidebar = ({ children, setZonalCode, setformId }) => {
   }
   else {
     items = [
+      getItem('Orders', 'sub7', <UserOutlined />, [
+        getItem(<Link href={"/admin/order"}>Manage Orders</Link>, '52'),
+      ]),
       getItem('Products', 'sub1', <UserOutlined />, [
         getItem(<Link href={"/admin/product/create"}>Add Products</Link>, '31'),
         getItem(<Link href={"/admin/product"}>Manage Products</Link>, '32'),

@@ -85,7 +85,7 @@ const AddSupplier = () => {
       </Form.Item>
       <Form.Item
         label="Phone"
-        name="phone"
+        name="contactNo"
         hasFeedback
         rules={[
           {

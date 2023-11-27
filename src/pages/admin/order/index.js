@@ -1,28 +1,26 @@
 
 
-
 import React, { useState } from 'react';
-import { message, notification } from "antd";
-import { getSession, useSession } from 'next-auth/react';
+import { notification } from "antd";
+import { useSession } from 'next-auth/react';
 
-import { Alert, Space, Spin } from 'antd';
-import ManageSupplier from '@/components/Pages/Info/ManageSupplier';
-import { useGetSuppliersQuery } from '@/redux/features/supplier/supplierApi';
+import { Space, Spin } from 'antd';
+
+import { useGetBrandsQuery } from '@/redux/features/brand/brandApi';
+import ManageBrand from '@/components/Pages/Info/ManageBrand';
 import UMBreadCrumb from '@/components/UI/UMBreadCrumb';
-import { getUserInfo } from '@/services/user-info';
 import LayoutOne from '@/components/layouts/LayoutOne';
 import AdminSidebar from '@/components/layouts/AdminSidebar';
+import ManageOrder from '@/components/Pages/Info/ManageOrder';
+import { useGetOrdersQuery } from '@/redux/features/order/orderApi';
 
-const ManageSupplierPage = () => {
+const ManageOrderPage = () => {
     const [api, contextHolder] = notification.useNotification();
     const { data: session } = useSession();
     const [formId, setFormId] = useState();
-
-    const { pbsCode: pbs_code } = getUserInfo();
-
-    const { data, isLoading } = useGetSuppliersQuery({ refetchOnMountOrArgChange: true });
-    const suppliers = data?.data;
-    console.log(suppliers)
+    const { data, isLoading } = useGetOrdersQuery({ refetchOnMountOrArgChange: true });
+    const brands = data?.data;
+    console.log(brands)
     if (isLoading) {
         return <Space
             direction="vertical"
@@ -53,20 +51,19 @@ const ManageSupplierPage = () => {
                     ]
                 }
             />
-            <ManageSupplier suppliers={suppliers} ></ManageSupplier>
+            <ManageOrder brands={brands} ></ManageOrder>
         </div>
     );
 };
 
-export default ManageSupplierPage;
-ManageSupplierPage.getLayout = function getLayout(page) {
+export default ManageOrderPage;
+ManageOrderPage.getLayout = function getLayout(page) {
     return (
-        <LayoutOne title="Dream Maker || Supplier" style={{ padding: '20px' }}>
+        <LayoutOne title="Dream Maker || Order" style={{ padding: '20px' }}>
             <AdminSidebar >
                 {page}
             </AdminSidebar>
         </LayoutOne >
     )
 }
-
 

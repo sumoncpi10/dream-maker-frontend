@@ -50,7 +50,7 @@ const AddProduct = ({ subcategroys }) => {
     // cole.log(models)
     const [api, contextHolder] = notification.useNotification();
     const { data: session } = useSession();
-    console.log(session)
+    // console.log(session)
     const { pbsCode: pbs_code } = getUserInfo();
     const { data: dataItemType, isLoading } = useGetProductTypeQuery();
     const productType = dataItemType?.data;
@@ -275,6 +275,20 @@ const AddProduct = ({ subcategroys }) => {
                     {brands?.map((brand) => (
                         <Option value={brand.id} key={brand.id}>
                             {brand.title}
+                        </Option>
+                    ))}
+                </Select>
+            </Form.Item>
+            <Form.Item label="Supplier" name="supplierId" hasFeedback rules={[
+                {
+                    required: true,
+                    message: 'Please provide a Supplier name',
+                },
+            ]}>
+                <Select placeholder="Select a Supplier" allowClear >
+                    {suppliers?.map((brand) => (
+                        <Option value={brand.id} key={brand.id}>
+                            {brand.name}
                         </Option>
                     ))}
                 </Select>

@@ -136,7 +136,16 @@ const AddUser = () => {
             >
                 <Input placeholder="Email" />
             </Form.Item>
-            <Form.Item label="Password" name="password" hasFeedback >
+            <Form.Item
+                label="Password"
+                name="password"
+                hasFeedback
+                rules={[
+                    {
+                        required: true,
+                        message: 'Please provide a Password',
+                    },
+                ]}>
                 <Input.Password placeholder="with input password" />
             </Form.Item>
             <Form.Item

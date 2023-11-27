@@ -13,7 +13,7 @@ import Slider from "react-slick";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import Link from "next/link";
-
+import { notification } from "antd";
 import { formatCurrency } from "../../common/utils";
 import { calculateTotalPrice } from "../../common/shopUtils";
 import LayoutOne from "../../components/layouts/LayoutOne";
@@ -21,8 +21,16 @@ import Container from "../../components/other/Container";
 import productData from "../../data/product.json";
 import Product from "../../components/product/Product";
 import { getUserInfo } from "@/services/user-info";
+import { useGetShippingAddressQuery } from "@/redux/features/shippingAddress/shippingAddressApi";
+import { usePostOrderMutation } from "@/redux/features/order/orderApi";
 
 const paymentData = [
+  {
+    name: "Cash On Delivery",
+    index: "cashOnDelivery",
+    content:
+      "Received Product on HandCash",
+  },
   {
     name: "Direct Bank Transfer",
     content:
@@ -41,13 +49,25 @@ const paymentData = [
 ];
 
 export default function Checkout() {
+  const [api, contextHolder] = notification.useNotification();
   const { Option } = Select;
   const { Panel } = Collapse;
   const router = useRouter();
   const cartState = useSelector((state) => state.cartReducer);
   const globalState = useSelector((state) => state.globalReducer);
   const { currency, locales } = globalState.currency;
-  const [paymentMethod, setPaymentMethod] = useState("Direct Bank Transfer");
+  const { data, isLoading } = useGetShippingAddressQuery({ refetchOnMountOrArgChange: true });
+  const shippingAddress = data?.data;
+  console.log(shippingAddress)
+  const [paymentMethod, setPaymentMethod] = useState("cashOnDelivery");
+  const product = cartState?.map(cart => {
+    const productId = cart.id;
+    const quantity = cart.cartQuantity;
+
+    return { productId, quantity } // Adding a new property to each object
+
+  })
+  console.log(product)
   const settings = {
     arrows: false,
     infinite: true,
@@ -76,8 +96,33 @@ export default function Checkout() {
       },
     ],
   };
-  const onFinish = (values) => {
-    router.push("/shop/checkout-complete");
+  const [postOrder, { isSuccess, isError }] = usePostOrderMutation();
+  const onFinish = async (values) => {
+    values['product'] = product;
+    values['orderType'] = paymentMethod;
+    console.log(values)
+    const options = {
+      data: values
+    }
+    const result = await postOrder(options);
+    console.log(result)
+    if (result?.data?.statusCode == 200) {
+      const openNotificationWithIcon = (type) => {
+        api[type]({
+          message: result?.data?.message,
+        });
+      };
+      openNotificationWithIcon('success')
+      router.push("/shop/checkout-complete");
+    } else {
+      const openNotificationWithIcon = (type) => {
+        api[type]({
+          message: result?.error?.data?.message,
+        });
+      };
+      openNotificationWithIcon('error')
+    }
+
   };
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
@@ -92,13 +137,13 @@ export default function Checkout() {
   console.log(cartState, email, name)
   return (
     <LayoutOne title="Checkout">
-
+      {contextHolder}
       <div className="checkout">
         <div className="checkout-top">
           <Container>
             <Row gutter={{ xs: 0, lg: 70 }}>
               <Col span={24} lg={15} xl={17}>
-                <h3 className="checkout-title">Billing details</h3>
+                <h3 className="checkout-title">Shipping Address</h3>
                 <Form
                   name="basic"
                   initialValues={{ remember: true }}
@@ -113,6 +158,9 @@ export default function Checkout() {
                       <Form.Item
                         label="Name"
                         name="name"
+
+                        initialValue={shippingAddress?.users?.name}
+
                         rules={[
                           {
                             required: true,
@@ -126,7 +174,8 @@ export default function Checkout() {
                     <Col span={24} md={12}>
                       <Form.Item
                         label="Phone number"
-                        name="phone"
+                        name="contactNo"
+                        initialValue={shippingAddress?.users?.contactNo}
                         rules={[
                           {
                             required: true,
@@ -139,72 +188,75 @@ export default function Checkout() {
                     </Col>
                     <Col span={24} md={12}>
                       <Form.Item
-                        label="Provine"
-                        name="provine"
+                        label="Division"
+                        name="divisionId"
                         rules={[
                           {
                             required: true,
-                            message: "Please input your provine!",
+                            message: "Please input your Division!",
                           },
                         ]}
                       >
                         <Select>
-                          <Option value="male">male</Option>
-                          <Option value="female">female</Option>
-                          <Option value="other">other</Option>
+                          <Option value="fe1d3013-d5dd-40c8-9d05-4f6b289a72ca">Dhaka</Option>
+                          <Option value="fe1d3013-d5dd-40c8-9d05-4f6b289a72ca">Chittagong</Option>
+                          <Option value="fe1d3013-d5dd-40c8-9d05-4f6b289a72ca">Sylhet</Option>
                         </Select>
                       </Form.Item>
                     </Col>
                     <Col span={24} md={12}>
                       <Form.Item
-                        label="City"
-                        name="city"
+                        label="District"
+                        name="districtId"
                         rules={[
                           {
                             required: true,
-                            message: "Please input your city!",
+                            message: "Please input your District!",
                           },
                         ]}
                       >
                         <Select>
-                          <Option value="male">male</Option>
-                          <Option value="female">female</Option>
-                          <Option value="other">other</Option>
+                          <Option value="070878ab-979d-4795-b5f8-0882a5b04d2f">Dhaka</Option>
+                          <Option value="070878ab-979d-4795-b5f8-0882a5b04d2f">Narayanganj</Option>
+                          <Option value="070878ab-979d-4795-b5f8-0882a5b04d2f">Gazipur</Option>
+                          <Option value="070878ab-979d-4795-b5f8-0882a5b04d2f">Chittagong</Option>
+                          <Option value="070878ab-979d-4795-b5f8-0882a5b04d2f">Cox's Bazar</Option>
                         </Select>
                       </Form.Item>
                     </Col>
 
                     <Col span={24} md={12}>
                       <Form.Item
-                        label="Country/States"
-                        name="country"
+                        label="Thana"
+                        name="thanaId"
                         rules={[
                           {
                             required: true,
-                            message: "Please input your country !",
+                            message: "Please input your Thana !",
                           },
                         ]}
                       >
                         <Select>
-                          <Option value="male">male</Option>
-                          <Option value="female">female</Option>
-                          <Option value="other">other</Option>
+                          <Option value="49068a42-34bb-4693-a4d3-aa1ca83a9a1f">Dhaka</Option>
+                          <Option value="49068a42-34bb-4693-a4d3-aa1ca83a9a1f">Savar</Option>
+                          <Option value="49068a42-34bb-4693-a4d3-aa1ca83a9a1f">Panchlish</Option>
+                          <Option value="49068a42-34bb-4693-a4d3-aa1ca83a9a1f">Cox'sbazar Sadar</Option>
                         </Select>
                       </Form.Item>
                     </Col>
                     <Col span={24} md={12}>
-                      <Form.Item label="Postcode/Zip" name="zip">
+                      <Form.Item label="Postcode/Zip" name="postCode">
                         <Input />
                       </Form.Item>
                     </Col>
                     <Col span={24} md={12}>
                       <Form.Item
                         label="Address"
-                        name="address"
+                        name="houseBuildingStreet"
                         rules={[
                           {
                             required: true,
-                            message: "Please input your address!",
+                            message: "House /Building /Street!",
                           },
                         ]}
                       >
@@ -213,15 +265,29 @@ export default function Checkout() {
                     </Col>
 
                     <Col span={24} md={12}>
-                      <Form.Item label="Email" name="email">
-                        <Input />
+                      <Form.Item label="Email"
+                        name="email"
+                        initialValue={shippingAddress?.userEmail}
+                        rules={[
+                          {
+                            type: 'email',
+                            message: 'The input is not a valid email!',
+                          },
+                          {
+                            required: true,
+                            message: 'Please input your email!',
+                          },
+                        ]}>
+                        <Input disabled />
                       </Form.Item>
                     </Col>
                     <Col span={24} md={12}>
 
                     </Col>
                     <Col span={24}>
-                      <Form.Item name="news-subcribe" valuePropName="checked">
+                      <Form.Item
+                        // name="news-subcribe" 
+                        valuePropName="checked">
                         <Checkbox>
                           I want to receive exclusive discounts and information
                           on the latest Dream Maker Super Shop trends.
@@ -311,12 +377,12 @@ export default function Checkout() {
                       ghost
                       onChange={onChoosePayment}
                     >
-                      {paymentData.map((item, index) => (
+                      {paymentData?.map((item, index) => (
                         <Panel
                           showArrow={false}
                           header={item.name}
                           key={item.name}
-                          onClick={() => setPaymentMethod(item.name)}
+                          onClick={() => setPaymentMethod(item.cashOnDelivery)}
                           extra={
                             <i
                               className={

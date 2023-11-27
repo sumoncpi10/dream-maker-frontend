@@ -1,15 +1,12 @@
-
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { Button, Modal, Form, Input, Popconfirm, Table } from 'antd';
+import { Button, Modal, Select, Form, Input, Popconfirm, Table, Space } from 'antd';
 import { notification } from "antd";
 const EditableContext = React.createContext(null);
 import { Typography } from 'antd';
 import {
   EditFilled,
 } from '@ant-design/icons';
-import { useSession } from 'next-auth/react';
 import Print from '@/components/UI/Print';
-import { useUpdateSupplierMutation } from '@/redux/features/supplier/supplierApi';
 const { Title } = Typography;
 const EditableRow = ({ index, ...props }) => {
   const [form] = Form.useForm();
@@ -21,6 +18,7 @@ const EditableRow = ({ index, ...props }) => {
     </Form>
   );
 };
+
 const EditableCell = ({
   title,
   editable,
@@ -87,10 +85,9 @@ const EditableCell = ({
   }
   return <td {...restProps}>{childNode}</td>;
 };
-const ManageSupplier = ({ suppliers }) => {
-  //console.log(suppliers);
-  const { data: session } = useSession();
-  const [dataSource, setDataSource] = useState(suppliers);
+const ManageOrder = ({ brands }) => {
+  console.log(brands);
+  const [dataSource, setDataSource] = useState(brands);
   const [count, setCount] = useState(2);
   const handleDelete = (key) => {
     const newData = dataSource.filter((item) => item.id !== key);
@@ -98,24 +95,48 @@ const ManageSupplier = ({ suppliers }) => {
   };
   const defaultColumns = [
     {
-      title: 'Supplier Name',
-      dataIndex: 'name',
-      // width: '30%',
-      // editable: true,
+      title: 'Order Id',
+      dataIndex: 'orderId',
     },
     {
-      title: 'Address',
-      dataIndex: 'address',
+      title: 'Order Type',
+      dataIndex: 'orderType',
+    },
+    {
+      title: 'Email',
+      dataIndex: 'userEmail',
     },
     {
       title: 'Phone',
       dataIndex: 'contactNo',
     },
     {
+      title: 'Ordered Products',
+      key: 'orderedProducts',
+      render: (_, record) => (
+        <Space direction="vertical">
+          {record?.OrderedProduct?.map(product => (
+            <div key={product.id}>
+              <strong>Product ID:</strong> {product.productId},<strong>Price:</strong> {product.price - product?.discount}, <strong>Quantity:</strong> {product.quantity}
+            </div>
+          ))}
+        </Space>
+      ),
+    },
+    // {
+    //   title: 'Created At',
+    //   dataIndex: 'createdAt',
+    // },
+    // {
+    //   title: 'Updated At',
+    //   dataIndex: 'updatedAt',
+    // },
+    {
       title: 'Action',
       dataIndex: 'operation',
       render: (_, record) =>
         dataSource.length >= 1 ? (
+
           <Popconfirm title="Sure to Update?" onConfirm={() => showModal(record)}>
             <a><EditFilled /></a>
           </Popconfirm>
@@ -174,26 +195,24 @@ const ManageSupplier = ({ suppliers }) => {
     };
   });
   const [open, setOpen] = useState(false);
-  const [selectedSupplier, setSelectedSupplier] = useState(null);
+  const [selectedBrand, setSelectedBrand] = useState(null);
   const [form] = Form.useForm();
   useEffect(() => {
-    if (selectedSupplier) {
+    if (selectedBrand) {
       form.setFieldsValue({
-        id: selectedSupplier.id,
-        name: selectedSupplier.name,
-        phone: selectedSupplier.phone,
-        address: selectedSupplier.address,
+        id: selectedBrand.id,
+        brandName: selectedBrand.brandName,
       });
     }
-  }, [selectedSupplier, form]);
+  }, [selectedBrand, form]);
   const showModal = (record) => {
-    setSelectedSupplier(record);
+    setSelectedBrand(record);
     setOpen(true);
   };
 
   const handleCancel = () => {
     setOpen(false);
-    setSelectedSupplier(null);
+    setSelectedBrand(null);
   };
   const formItemLayout = {
     labelCol: {
@@ -214,67 +233,12 @@ const ManageSupplier = ({ suppliers }) => {
     },
   };
   const [api, contextHolder] = notification.useNotification();
-  const [updateSupplier, { isSuccess, isError }] = useUpdateSupplierMutation();
-  const onFinish = async (values) => {
+  const onFinish = (values) => {
     //console.log(values)
-    const options = {
-      id: values?.id,
-      data: values
-    }
-    const result = await updateSupplier(options);
-    console.log(result?.statusCode);
-    if (result?.data?.statusCode == 200) {
-      const openNotificationWithIcon = (type) => {
-        api[type]({
-          message: result?.data?.message,
-        });
-      };
-      openNotificationWithIcon('success')
-    } else {
-      const openNotificationWithIcon = (type) => {
-        api[type]({
-          message: result?.error?.data?.message,
-        });
-      };
-      openNotificationWithIcon('error')
-    }
-    // const pbsCode = session?.pbs_code?.pbs_code;
-    // const withvalues = { ...values, pbsCode };
-    // //console.log(withvalues);
-    // const accessToken = session?.accessToken?.accessToken;
-    // fetch(`https://computer-management-backend.vercel.app/api/v1/supplier/${values?.id}`, {
-    //   method: "PATCH",
-    //   headers: {
-    //     "content-type": "application/json",
-    //     Authorization: accessToken,
-    //   },
-    //   body: JSON.stringify(withvalues),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-
-    //     const openNotificationWithIcon = (type) => {
-    //       api[type]({
-    //         message: data?.message,
-    //       });
-    //     };
-    //     openNotificationWithIcon('success')
-    //     setOpen(false);
-    //   });
   };
   return (
     <div>
-      {/* <Button
-        onClick={handleAdd}
-        type="primary"
-        style={{
-          marginBottom: 16,
-        }}
-      >
-        Add a row
-      </Button> */}
-      <Title level={2}>Manage Supplier</Title>
-      <Print></Print>
+      <Title level={2}>Manage Order</Title>
       <Table
         components={components}
         rowClassName={() => 'editable-row'}
@@ -290,58 +254,34 @@ const ManageSupplier = ({ suppliers }) => {
       >
         <Form {...formItemLayout} style={{ maxWidth: 600 }} onFinish={onFinish} form={form}>
           {contextHolder}
-          <Title level={2}>Update Supplier</Title>
+          <Title level={2}>Update Brand</Title>
+          <Print></Print>
           <Form.Item
-            label="Supplier ID"
+            label="Brand ID"
             name="id"
             hasFeedback
             rules={[
               {
                 required: true,
-                message: 'Please provide a supplier ID',
+                message: 'Please provide a Brand ID',
               },
             ]}
           >
-            <Input placeholder="Supplier ID" disabled />
+            <Input placeholder="Brand ID" disabled />
           </Form.Item>
+
           <Form.Item
-            label="Supplier Name"
-            name="name"
+            label="Brand Name"
+            name="brandName"
             hasFeedback
             rules={[
               {
                 required: true,
-                message: 'Please provide a supplier name',
+                message: 'Please provide a Brand name',
               },
             ]}
           >
-            <Input placeholder="Supplier Name" />
-          </Form.Item>
-          <Form.Item
-            label="Phone"
-            name="phone"
-            hasFeedback
-            rules={[
-              {
-                required: true,
-                message: 'Please provide a Phone Number',
-              },
-            ]}
-          >
-            <Input placeholder="Phone Number" />
-          </Form.Item>
-          <Form.Item
-            label="Address"
-            name="address"
-            hasFeedback
-            rules={[
-              {
-                required: true,
-                message: 'Address is required',
-              },
-            ]}
-          >
-            <Input.TextArea allowClear showCount />
+            <Input placeholder="Brand Name" />
           </Form.Item>
 
           <Form.Item wrapperCol={{ xs: { span: 24, offset: 0 }, sm: { span: 14, offset: 6 } }}>
@@ -354,4 +294,4 @@ const ManageSupplier = ({ suppliers }) => {
     </div>
   );
 };
-export default ManageSupplier;
+export default ManageOrder;

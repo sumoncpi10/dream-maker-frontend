@@ -3,12 +3,12 @@ import { api } from '@/redux/api/apiSlice';
 const capitalApi = api.injectEndpoints({
     endpoints: (builder) => ({
         getSuppliers: builder.query({
-            query: ({ id }) => `/supplier/${id}`,
+            query: () => `/suppliers`,
             providesTags: ['suppliers'],
         }),
         postSuppliers: builder.mutation({
             query: ({ id, data }) => ({
-                url: `/supplier/create-supplier`,
+                url: `/suppliers/create-supplier`,
                 method: 'POST',
                 body: data,
             }),
