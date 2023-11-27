@@ -9,7 +9,6 @@ import {
   Collapse,
 } from "antd";
 import { useState, useCallback } from "react";
-import Slider from "react-slick";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import Link from "next/link";
@@ -18,12 +17,11 @@ import { formatCurrency } from "../../common/utils";
 import { calculateTotalPrice } from "../../common/shopUtils";
 import LayoutOne from "../../components/layouts/LayoutOne";
 import Container from "../../components/other/Container";
-import productData from "../../data/product.json";
-import Product from "../../components/product/Product";
 import { getUserInfo } from "@/services/user-info";
 import { useGetShippingAddressQuery } from "@/redux/features/shippingAddress/shippingAddressApi";
 import { usePostOrderMutation } from "@/redux/features/order/orderApi";
-
+const { Option } = Select;
+const { Panel } = Collapse;
 const paymentData = [
   {
     name: "Cash On Delivery",
@@ -33,16 +31,19 @@ const paymentData = [
   },
   {
     name: "Direct Bank Transfer",
+    index: "cashOnDelivery",
     content:
       "Transfer Money To This DBBL(Dutch Bangla Bank) Account Number - 151.........",
   },
   {
     name: "Bkash Payment",
+    index: "cashOnDelivery",
     content:
       "Go to Payment Option And Pay to this Account Number - 01000000000",
   },
   {
     name: "SSL Comerz",
+    index: "cashOnDelivery",
     content:
       "With so many different ways today to find information online, it can sometimes be hard to know where to go to first.",
   },
@@ -56,9 +57,9 @@ export default function Checkout() {
   const cartState = useSelector((state) => state.cartReducer);
   const globalState = useSelector((state) => state.globalReducer);
   const { currency, locales } = globalState.currency;
-  const { data, isLoading } = useGetShippingAddressQuery({ refetchOnMountOrArgChange: true });
+  const { data } = useGetShippingAddressQuery({ refetchOnMountOrArgChange: true });
   const shippingAddress = data?.data;
-  console.log(shippingAddress)
+  // console.log(shippingAddress)
   const [paymentMethod, setPaymentMethod] = useState("cashOnDelivery");
   const product = cartState?.map(cart => {
     const productId = cart.id;
@@ -67,7 +68,7 @@ export default function Checkout() {
     return { productId, quantity } // Adding a new property to each object
 
   })
-  console.log(product)
+  // console.log(product)
   const settings = {
     arrows: false,
     infinite: true,
@@ -96,7 +97,7 @@ export default function Checkout() {
       },
     ],
   };
-  const [postOrder, { isSuccess, isError }] = usePostOrderMutation();
+  const [postOrder] = usePostOrderMutation();
   const onFinish = async (values) => {
     values['product'] = product;
     values['orderType'] = paymentMethod;
@@ -220,7 +221,7 @@ export default function Checkout() {
                           <Option value="070878ab-979d-4795-b5f8-0882a5b04d2f">Narayanganj</Option>
                           <Option value="070878ab-979d-4795-b5f8-0882a5b04d2f">Gazipur</Option>
                           <Option value="070878ab-979d-4795-b5f8-0882a5b04d2f">Chittagong</Option>
-                          <Option value="070878ab-979d-4795-b5f8-0882a5b04d2f">Cox's Bazar</Option>
+                          <Option value="070878ab-979d-4795-b5f8-0882a5b04d2f">Coxs Bazar</Option>
                         </Select>
                       </Form.Item>
                     </Col>
@@ -240,7 +241,7 @@ export default function Checkout() {
                           <Option value="49068a42-34bb-4693-a4d3-aa1ca83a9a1f">Dhaka</Option>
                           <Option value="49068a42-34bb-4693-a4d3-aa1ca83a9a1f">Savar</Option>
                           <Option value="49068a42-34bb-4693-a4d3-aa1ca83a9a1f">Panchlish</Option>
-                          <Option value="49068a42-34bb-4693-a4d3-aa1ca83a9a1f">Cox'sbazar Sadar</Option>
+                          <Option value="49068a42-34bb-4693-a4d3-aa1ca83a9a1f">Coxsbazar Sadar</Option>
                         </Select>
                       </Form.Item>
                     </Col>
