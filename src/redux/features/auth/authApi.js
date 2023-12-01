@@ -15,6 +15,14 @@ const authApi = api.injectEndpoints({
             }),
             invalidatesTags: ['user'],
         }),
+        userSignup: builder.mutation({
+            query: ({ data }) => ({
+                url: `/auth/signup`,
+                method: 'POST',
+                body: data,
+            }),
+            invalidatesTags: ['user'],
+        }),
         updateEmployee: builder.mutation({
             query: ({ id, data }) => ({
                 url: `/employee/${id}`,
@@ -37,6 +45,7 @@ const authApi = api.injectEndpoints({
 export const {
     useGetEmployeeQuery,
     useUserLoginMutation,
+    useUserSignupMutation,
     useUpdateEmployeeMutation,
     useChangePasswordMutation
 } = authApi;

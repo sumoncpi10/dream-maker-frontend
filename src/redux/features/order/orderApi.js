@@ -6,6 +6,10 @@ const orderApi = api.injectEndpoints({
             query: () => `/orders`,
             providesTags: ['orders'],
         }),
+        getMyOrders: builder.query({
+            query: () => `/orders/my-order`,
+            providesTags: ['orders'],
+        }),
         postOrder: builder.mutation({
             query: ({ data }) => ({
                 url: `/orders/create-order`,
@@ -19,5 +23,6 @@ const orderApi = api.injectEndpoints({
 
 export const {
     useGetOrdersQuery,
+    useGetMyOrdersQuery,
     usePostOrderMutation,
 } = orderApi;

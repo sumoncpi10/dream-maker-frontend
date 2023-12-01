@@ -63,7 +63,7 @@ const AdminSidebar = ({ children, setZonalCode, setformId }) => {
       ]),
     ];
   }
-  else {
+  else if (role == 'admin') {
     items = [
       getItem('Orders', 'sub7', <UserOutlined />, [
         getItem(<Link href={"/admin/order"}>Manage Orders</Link>, '52'),
@@ -91,33 +91,15 @@ const AdminSidebar = ({ children, setZonalCode, setformId }) => {
       getItem('User', 'sub4', <UserOutlined />, [
         getItem(<Link href={"/admin/user/create"}>Add User</Link>, '5'),
         getItem(<Link href={"/admin/user"}>Manage User</Link>, '6'),
-        // getItem(<Link href={"/admin/user/request-zonal-transfer"}>Request Zonal Transfer</Link>, '7'),
-        // getItem(<Link href={"/admin/user/approve-zonal-transfer"}>Approve Zonal Transfer</Link>, '8'),
-        // getItem(<Link href={"/admin/user/request-pbs-transfer"}>Request PBS Transfer</Link>, '9'),
-        // getItem(<Link href={"/admin/user/approve-pbs-transfer"}>Release PBS Transfer</Link>, '10'),
+
       ]),
 
-      // getItem('Designation', 'sub4', <UserOutlined />, [
-      //   getItem(<Link href={"/admin/designation"}>Manage Designation</Link>, '12'),
-      // ]),
-      // getItem('Department', 'sub5', <TeamOutlined />, [
-      //   getItem(<Link href={"/admin/department"}>Manage Department</Link>, '14'),
-      // ]),
-      // getItem('Office', 'sub6', <BuildOutlined />, [
-      //   getItem(<Link href={"/admin/office/create"}>Add HQ/Zonal/SubZonal</Link>, '15'),
-      //   getItem(<Link href={"/admin/office"}>Manage HQ/Zonal/SubZonal</Link>, '16'),
-      //   getItem(<Link href={"/admin/office/cc/create"}>Add CCS</Link>, '17'),
-      //   getItem(<Link href={"/admin/office/cc"}>Manage CCS</Link>, '18'),
-      // ]),
-      // getItem('Report', 'sub7', <UserOutlined />, [
-      //   getItem(<Link href={"/admin/inventory"}>Availablity List</Link>, '23'),
-      // ]),
-      // getItem('Availablity Setting', 'sub8', <UserOutlined />, [
-      //   getItem(<Link href={"/admin/inventory/available-department/create"}>Add Available Department</Link>, '19'),
-      //   getItem(<Link href={"/admin/inventory/available-department"}>Manage Available Department</Link>, '20'),
-      //   getItem(<Link href={"/admin/inventory/available-designation/create"}>Add Available Designation</Link>, '21'),
-      //   getItem(<Link href={"/admin/inventory/available-designation"}>Manage Available Designation</Link>, '22'),
-      // ]),
+
+    ];
+  }
+  else {
+    items = [
+      getItem(<Link href={"/admin/order/myorder"}>My Orders</Link>, '55', <UserOutlined />),
     ];
   }
   const handleAdminSidebarClick = (label, key) => {
@@ -149,7 +131,7 @@ const AdminSidebar = ({ children, setZonalCode, setformId }) => {
           minHeight: '100vh',
           background: 'white'
         }} theme="" defaultSelectedKeys={['1']} mode="inline">
-          {items.map((item) => {
+          {items?.map((item) => {
             if (item.children) {
               return (
                 <Menu.SubMenu key={item.key} icon={item.icon} title={item.label}>
