@@ -9,7 +9,9 @@ import { notification } from "antd";
 import Link from "next/link";
 import LayoutOne from "@/components/layouts/LayoutOne";
 import { useUserSignupMutation } from '@/redux/features/auth/authApi';
+import { useRouter } from 'next/router';
 const SignUpPage = () => {
+    const router = useRouter();
     console.log(useSession())
     const [api, contextHolder] = notification.useNotification();
     const [loading, setLoading] = useState(false);

@@ -8,7 +8,8 @@ import {
   Select,
   Collapse,
 } from "antd";
-import { useState, useCallback } from "react";
+import { useSession } from "next-auth/react";
+import { useState, useCallback, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import Link from "next/link";
@@ -20,6 +21,7 @@ import Container from "../../components/other/Container";
 import { getUserInfo } from "@/services/user-info";
 import { useGetShippingAddressQuery } from "@/redux/features/shippingAddress/shippingAddressApi";
 import { usePostOrderMutation } from "@/redux/features/order/orderApi";
+import Loading from "@/components/other/Loading";
 const { Option } = Select;
 const { Panel } = Collapse;
 const paymentData = [
@@ -50,14 +52,20 @@ const paymentData = [
 ];
 
 export default function Checkout() {
+  const { data: session } = useSession();
+  const router = useRouter();
+
+  if (!session) {
+    router.push("/login");
+  }
   const [api, contextHolder] = notification.useNotification();
   const { Option } = Select;
   const { Panel } = Collapse;
-  const router = useRouter();
+
   const cartState = useSelector((state) => state.cartReducer);
   const globalState = useSelector((state) => state.globalReducer);
   const { currency, locales } = globalState.currency;
-  const { data } = useGetShippingAddressQuery({ refetchOnMountOrArgChange: true });
+  const { data, isLoading } = useGetShippingAddressQuery({ refetchOnMountOrArgChange: true });
   const shippingAddress = data?.data;
   // console.log(shippingAddress)
   const [paymentMethod, setPaymentMethod] = useState("cashOnDelivery");
@@ -136,6 +144,9 @@ export default function Checkout() {
   );
   const { email, name } = getUserInfo()
   console.log(cartState, email, name)
+  if (isLoading) {
+    return <Loading></Loading>
+  }
   return (
     <LayoutOne title="Checkout">
       {contextHolder}
