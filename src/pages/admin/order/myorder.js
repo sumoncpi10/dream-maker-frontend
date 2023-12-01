@@ -45,8 +45,8 @@ const ManageMyOrderPage = () => {
                 items={
                     [
                         {
-                            label: 'Admin',
-                            link: '/admin'
+                            label: 'Home',
+                            link: '/'
                         },
                     ]
                 }
