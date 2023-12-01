@@ -29,7 +29,7 @@ function Footer({ containerType }) {
                 </Link> */}
                 <p>Dhaka, Bangladesh</p>
                 <ul>
-                  <li>admin@boibitan.com</li>
+                  <li>admin@dmss.com</li>
                   <li>+01 123 456 888</li>
                 </ul>
               </div>
@@ -86,7 +86,7 @@ function Footer({ containerType }) {
       </div>
       <div className="footer-bottom">
         <Container type={containerType}>
-          <p>Copyright © 2023 BoiBitan. All rights reserved</p>
+          <p>Copyright © 2023 Dream Maker Super Shop. All rights reserved</p>
         </Container>
       </div>
     </div>
