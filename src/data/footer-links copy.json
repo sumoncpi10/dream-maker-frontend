@@ -27,8 +27,20 @@
       "src": "/admin/order/myorder"
     },
     {
+      "name": "Downloads",
+      "src": "/contact"
+    },
+    {
+      "name": "Addresses",
+      "src": "/contact"
+    },
+    {
       "name": "Account details",
       "src": "/admin/profile"
+    },
+    {
+      "name": "Logout",
+      "src": "/contact"
     }
   ]
 }
