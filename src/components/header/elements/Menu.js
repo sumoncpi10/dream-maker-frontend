@@ -37,7 +37,7 @@ function Menu({ containerType, itemType }) {
         </Link>
       </AntMenu.Item>
       <AntMenu.Item key="profile">
-        <Link href={"/profile"}>
+        <Link href={"/admin/profile"}>
           Profile
         </Link>
       </AntMenu.Item>

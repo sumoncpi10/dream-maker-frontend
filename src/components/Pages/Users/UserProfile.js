@@ -39,7 +39,7 @@ const formItemLayout = {
 };
 
 const UserProfile = ({ employee }) => {
-    //console.log(employee)
+    console.log(employee)
     const [api, contextHolder] = notification.useNotification();
     // const [dataSource, setDataSource] = useState(employee);
     const [form] = Form.useForm();
@@ -48,21 +48,21 @@ const UserProfile = ({ employee }) => {
         if (employee) {
             // const specificDate = moment(selectedCapitalItem.purchasedate, 'YYYY-MM-DD');
             form.setFieldsValue({
-                mobileNo: employee.mobileNo,
+                email: employee.email,
+                contactNo: employee.contactNo,
                 name: employee.name,
                 designationId: employee.designationId,
                 trgId: employee.trgId,
                 phone: employee.phone,
                 address: employee.address,
-                photoUrl: employee.photoUrl,
-                signUrl: employee.signUrl,
+                profileImg: employee.profileImg,
             });
         }
     }, [employee, form]);
     const onFinish = async (values) => {
         console.log(values)
         const options = {
-            id: values?.mobileNo,
+            // id: values?.mobileNo,
             data: values
         }
         const result = await updateEmployee(options);
@@ -90,7 +90,7 @@ const UserProfile = ({ employee }) => {
             <Title level={2}>Update Profile</Title>
             <Form.Item
                 label="User ID"
-                name="mobileNo"
+                name="email"
                 hasFeedback
                 rules={[
                     {
@@ -114,7 +114,7 @@ const UserProfile = ({ employee }) => {
             >
                 <Input placeholder="User Full Name" />
             </Form.Item>
-            <Form.Item
+            {/* <Form.Item
                 label="Designation"
                 name="designationId"
                 hasFeedback
@@ -131,18 +131,18 @@ const UserProfile = ({ employee }) => {
                 label="Training ID"
                 name="trgId"
                 hasFeedback
-            // rules={[
-            //     {
-            //         required: true,
-            //         message: 'Please provide a Training ID',
-            //     },
-            // ]}
+                rules={[
+                    {
+                        required: true,
+                        message: 'Please provide a Training ID',
+                    },
+                ]}
             >
                 <Input placeholder="Training ID" />
-            </Form.Item>
+            </Form.Item> */}
             <Form.Item
                 label="Phone"
-                name="phone"
+                name="contactNo"
                 hasFeedback
                 rules={[
                     {
@@ -153,7 +153,7 @@ const UserProfile = ({ employee }) => {
             >
                 <Input placeholder="Enter phone number" />
             </Form.Item>
-            <Form.Item
+            {/* <Form.Item
                 label="Address"
                 name="address"
                 hasFeedback
@@ -165,10 +165,10 @@ const UserProfile = ({ employee }) => {
                 ]}
             >
                 <Input.TextArea placeholder="Enter Address" />
-            </Form.Item>
+            </Form.Item> */}
             <Form.Item
                 label="Photo URL"
-                name="photoUrl"
+                name="profileImg"
                 hasFeedback
                 rules={[
                     {
@@ -179,19 +179,7 @@ const UserProfile = ({ employee }) => {
             >
                 <Input placeholder="Photo URL" />
             </Form.Item>
-            <Form.Item
-                label="Sign URL"
-                name="signUrl"
-                hasFeedback
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please provide a Sign URL',
-                    },
-                ]}
-            >
-                <Input placeholder="Sign URL" />
-            </Form.Item>
+
             <Form.Item wrapperCol={{ xs: { span: 24, offset: 0 }, sm: { span: 14, offset: 6 } }}>
                 <Button type="primary" htmlType="submit" block>
                     Submit

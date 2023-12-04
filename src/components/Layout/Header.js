@@ -100,7 +100,7 @@ const ResponsiveNav = ({ children }) => {
                     icon={authUser?.photoUrl ? <Image alt="User Name" src={authUser?.photoUrl} width={25} height={25} /> : ""}
                     title={`${authUser?.name}, ${authUser?.designation}`} key="7" style={{ color: "cyan", textDecoration: 'none' }}>
                     <Menu.Item key="7:1">
-                      <Link style={{ color: "green", textDecoration: 'none' }} href="/profile">
+                      <Link style={{ color: "green", textDecoration: 'none' }} href="/admin/profile">
                         Profile
                       </Link>
                     </Menu.Item>

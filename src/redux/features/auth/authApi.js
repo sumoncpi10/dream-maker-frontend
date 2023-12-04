@@ -4,7 +4,7 @@ const authApi = api.injectEndpoints({
     endpoints: (builder) => ({
 
         getEmployee: builder.query({
-            query: ({ id }) => `/employee/${id}`,
+            query: ({ id }) => `/users/${id}`,
             providesTags: ['employee'],
         }),
         userLogin: builder.mutation({
@@ -24,8 +24,8 @@ const authApi = api.injectEndpoints({
             invalidatesTags: ['user'],
         }),
         updateEmployee: builder.mutation({
-            query: ({ id, data }) => ({
-                url: `/employee/${id}`,
+            query: ({ data }) => ({
+                url: `/users`,
                 method: 'PATCH',
                 body: data,
             }),
